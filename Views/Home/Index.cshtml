@@ -1,0 +1,504 @@
+﻿@{
+    ViewData["Title"] = "AI Fake News Detection";
+}
+
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #111827 0%, #1d4ed8 55%, #4f46e5 100%);
+        color: #fff;
+        padding: 6rem 0;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .hero-section::before {
+        content: "";
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+        top: -180px;
+        right: -120px;
+    }
+
+    .hero-section::after {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+        bottom: -150px;
+        left: -100px;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 0.9rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        line-height: 1.05;
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+
+    .hero-description {
+        max-width: 650px;
+        font-size: 1.15rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.88);
+    }
+
+    .hero-visual-card {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 1.5rem;
+        backdrop-filter: blur(10px);
+        padding: 2.5rem;
+        box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.18);
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-icon {
+        font-size: 4.5rem;
+        line-height: 1;
+    }
+
+    .scan-box {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        border-radius: 0.9rem;
+        background: rgba(0, 0, 0, 0.18);
+        text-align: left;
+    }
+
+    .scan-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.7rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .scan-row:last-child {
+        border-bottom: none;
+    }
+
+    .status-real {
+        color: #86efac;
+        font-weight: 700;
+    }
+
+    .feature-section {
+        padding: 5rem 0;
+    }
+
+    .section-title {
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+        max-width: 650px;
+        margin: 0 auto;
+    }
+
+    .feature-card {
+        height: 100%;
+        border: 1px solid #e5e7eb;
+        border-radius: 1.1rem;
+        padding: 2rem;
+        background: #fff;
+        transition: all 0.25s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.09);
+    }
+
+    .feature-icon {
+        width: 58px;
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1rem;
+        background: #eef2ff;
+        font-size: 1.8rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .feature-card h5 {
+        font-weight: 700;
+    }
+
+    .feature-card p {
+        line-height: 1.7;
+    }
+
+    .how-section {
+        background: #f8fafc;
+        padding: 5rem 0;
+    }
+
+    .step-card {
+        position: relative;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .step-number {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.25rem;
+        background: #4f46e5;
+        color: #fff;
+        font-size: 1.4rem;
+        font-weight: 800;
+        box-shadow: 0 0.6rem 1.5rem rgba(79, 70, 229, 0.25);
+    }
+
+    .step-card h5 {
+        font-weight: 700;
+    }
+
+    .step-card p {
+        line-height: 1.7;
+    }
+
+    .cta-section {
+        padding: 5rem 0;
+    }
+
+    .cta-card {
+        background: linear-gradient(135deg, #1e3a8a, #4f46e5);
+        color: #fff;
+        border-radius: 1.5rem;
+        padding: 3.5rem 2rem;
+        text-align: center;
+        box-shadow: 0 1.5rem 3rem rgba(30, 58, 138, 0.2);
+    }
+
+    .cta-card p {
+        color: rgba(255, 255, 255, 0.85);
+        max-width: 650px;
+        margin: 0 auto 1.75rem;
+    }
+
+    .disclaimer {
+        padding-bottom: 3rem;
+    }
+
+    .fade-in {
+        animation: fadeIn 0.7s ease both;
+    }
+
+    .delay-1 {
+        animation-delay: 0.15s;
+    }
+
+    .delay-2 {
+        animation-delay: 0.3s;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container hero-content">
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-7 fade-in">
+                <div class="hero-badge">
+                    <span>🤖</span>
+                    <span>AI-Powered News Analysis</span>
+                </div>
+
+                <h1 class="hero-title mb-4">
+                    Detect Fake News<br />
+                    <span class="text-info">with AI</span>
+                </h1>
+
+                <p class="hero-description mb-4">
+                    Analyze news headlines and article content using AI-assisted analysis.
+                    Get a clear <strong>REAL</strong> or <strong>FAKE</strong> prediction,
+                    confidence score, and an easy-to-understand explanation.
+                </p>
+
+                <div class="d-flex flex-column flex-sm-row gap-3">
+                    <a asp-controller="News"
+                       asp-action="Check"
+                       class="btn btn-light btn-lg px-4 fw-bold">
+                        🔍 Check News
+                    </a>
+
+                    <a asp-controller="News"
+                       asp-action="History"
+                       class="btn btn-outline-light btn-lg px-4 fw-semibold">
+                        🕘 View History
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-5 fade-in delay-1">
+                <div class="hero-visual-card">
+
+                    <div class="text-center">
+                        <div class="hero-icon mb-3">🛡️📰</div>
+
+                        <h4 class="fw-bold">
+                            AI News Verification
+                        </h4>
+
+                        <p class="mb-0 text-white-50">
+                            Submit an article and let the AI analyze its content
+                            for signals associated with misleading information.
+                        </p>
+                    </div>
+
+                    <div class="scan-box">
+
+                        <div class="scan-row">
+                            <span>Article Analysis</span>
+                            <span>✓</span>
+                        </div>
+
+                        <div class="scan-row">
+                            <span>AI Prediction</span>
+                            <span>✓</span>
+                        </div>
+
+                        <div class="scan-row">
+                            <span>Confidence Score</span>
+                            <span>✓</span>
+                        </div>
+
+                        <div class="scan-row">
+                            <span>Final Result</span>
+                            <span class="status-real">REAL / FAKE</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="feature-section">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="section-title">
+                Powerful Features
+            </h2>
+
+            <p class="text-muted fs-5 section-subtitle">
+                Everything you need to analyze suspicious news content
+                quickly and understand the AI-generated result.
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+
+                    <h5>AI-Assisted Analysis</h5>
+
+                    <p class="text-muted mb-0">
+                        News content is analyzed using an AI model to identify
+                        patterns and signals associated with potentially misleading content.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+
+                    <h5>Confidence Score</h5>
+
+                    <p class="text-muted mb-0">
+                        Every prediction includes a confidence percentage so
+                        you can understand how strong the AI signal is.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+
+                    <h5>Fast Results</h5>
+
+                    <p class="text-muted mb-0">
+                        Submit your article and receive the AI-assisted analysis
+                        within seconds.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card">
+                    <div class="feature-icon">🕘</div>
+
+                    <h5>Analysis History</h5>
+
+                    <p class="text-muted mb-0">
+                        Previous predictions are stored in the database so
+                        you can review your analysis history anytime.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="how-section">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="section-title">
+                How It Works
+            </h2>
+
+            <p class="text-muted fs-5">
+                Three simple steps to analyze a news article.
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="step-card fade-in">
+
+                    <div class="step-number">1</div>
+
+                    <h5>Enter News</h5>
+
+                    <p class="text-muted">
+                        Enter the news headline, article content and optionally
+                        provide the source URL.
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="step-card fade-in delay-1">
+
+                    <div class="step-number">2</div>
+
+                    <h5>AI Analysis</h5>
+
+                    <p class="text-muted">
+                        The AI model analyzes the submitted content and generates
+                        REAL and FAKE scores.
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="step-card fade-in delay-2">
+
+                    <div class="step-number">3</div>
+
+                    <h5>View Result</h5>
+
+                    <p class="text-muted">
+                        See the final prediction, confidence score and explanation
+                        on the result page.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+
+        <div class="cta-card">
+
+            <h2 class="fw-bold mb-3">
+                Ready to Check a News Article?
+            </h2>
+
+            <p class="fs-5">
+                Submit a headline and article content to get an AI-assisted
+                REAL or FAKE prediction.
+            </p>
+
+            <a asp-controller="News"
+               asp-action="Check"
+               class="btn btn-light btn-lg px-5 fw-bold">
+                🚀 Analyze News
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Disclaimer -->
+<section class="disclaimer">
+    <div class="container">
+
+        <div class="alert alert-warning d-flex align-items-start gap-2 mb-0"
+             role="alert">
+
+            <span class="fw-bold">⚠️</span>
+
+            <div>
+                <strong>Important:</strong>
+                This system provides AI-assisted analysis and does not guarantee
+                that an article is objectively true or false. Important information
+                should always be verified using multiple trusted and independent sources.
+            </div>
+
+        </div>
+
+    </div>
+</section>

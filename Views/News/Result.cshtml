@@ -1,0 +1,1004 @@
+@model FakeNewsDetection.Models.NewsArticle
+
+@{
+    ViewData["Title"] = "Analysis Result";
+
+    string prediction = Model?.Prediction?.Trim().ToUpperInvariant() ?? "FAKE";
+
+    bool isReal = prediction == "REAL";
+
+    string resultClass = isReal ? "result-real" : "result-fake";
+
+    string resultIcon = isReal ? "✓" : "!";
+
+    string resultTitle = isReal ? "REAL NEWS" : "FAKE NEWS";
+
+    string resultMessage = isReal
+        ? "The AI analysis indicates that this article appears to be real."
+        : "The AI analysis indicates that this article appears to be fake or misleading.";
+
+    double confidenceValue = Model?.Confidence ?? 0.0;
+
+    if (confidenceValue < 0)
+    {
+        confidenceValue = 0;
+    }
+
+    if (confidenceValue > 100)
+    {
+        confidenceValue = 100;
+    }
+
+    var searchResults =
+        ViewBag.NewsSearchResults
+        as List<FakeNewsDetection.Services.NewsSearchResult>
+        ?? new List<FakeNewsDetection.Services.NewsSearchResult>();
+}
+
+<style>
+
+    /* =========================================
+       RESULT PAGE
+       ========================================= */
+
+    .result-page {
+        padding: 4rem 0 5rem;
+        overflow-x: hidden;
+    }
+
+    .result-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .result-header h1 {
+        font-weight: 800;
+        letter-spacing: -0.8px;
+    }
+
+    .result-header p {
+        max-width: 680px;
+        margin: 0.75rem auto 0;
+    }
+
+    .result-card {
+        border: none;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.1);
+    }
+
+    .result-banner {
+        padding: 2.5rem 2rem;
+        text-align: center;
+        color: #fff;
+    }
+
+    .result-real {
+        background: linear-gradient(135deg, #047857, #10b981);
+    }
+
+    .result-fake {
+        background: linear-gradient(135deg, #b91c1c, #ef4444);
+    }
+
+    .result-icon {
+        width: 76px;
+        height: 76px;
+        margin: 0 auto 1rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.18);
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        font-size: 2.5rem;
+        font-weight: 800;
+    }
+
+    .result-title {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+    }
+
+    .result-message {
+        margin: 0 auto;
+        max-width: 600px;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* =========================================
+       CONFIDENCE
+       ========================================= */
+
+    .confidence-box {
+        background: #f8fafc;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        height: 100%;
+    }
+
+    .confidence-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .confidence-label {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-top: 0.4rem;
+    }
+
+    /* =========================================
+       DETAILS
+       ========================================= */
+
+    .detail-card {
+        border: 1px solid #e5e7eb;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        height: 100%;
+        background: #fff;
+    }
+
+    .detail-label {
+        color: #64748b;
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+    }
+
+    .article-content {
+        max-height: 240px;
+        overflow-y: auto;
+        overflow-wrap: anywhere;
+        background: #f8fafc;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        line-height: 1.7;
+        white-space: pre-line;
+    }
+
+    .explanation-box {
+        background: #f8fafc;
+        border-left: 4px solid #2563eb;
+        border-radius: 0.5rem;
+        padding: 1rem 1.25rem;
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+    }
+
+    .source-link {
+        word-break: break-all;
+        overflow-wrap: anywhere;
+    }
+
+    /* =========================================
+       SOURCES
+       ========================================= */
+
+    .sources-section {
+        margin-top: 2rem;
+    }
+
+    .sources-header {
+        margin-bottom: 1rem;
+    }
+
+    .source-card {
+        border: 1px solid #e5e7eb;
+        border-radius: 1rem;
+        padding: 1.25rem;
+        background: #fff;
+        height: 100%;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .source-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0.75rem 1.5rem rgba(15, 23, 42, 0.08);
+    }
+
+    .source-name {
+        font-size: 0.8rem;
+        font-weight: 800;
+        color: #2563eb;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .source-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        line-height: 1.4;
+        margin-top: 0.5rem;
+        overflow-wrap: anywhere;
+    }
+
+    .source-description {
+        color: #64748b;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-top: 0.75rem;
+        overflow-wrap: anywhere;
+    }
+
+    .source-date {
+        color: #94a3b8;
+        font-size: 0.8rem;
+    }
+
+    .source-read-button {
+        margin-top: 1rem;
+    }
+
+    .no-sources {
+        background: #f8fafc;
+        border: 1px dashed #cbd5e1;
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        color: #64748b;
+    }
+
+    /* =========================================
+       ACTION BUTTONS
+       ========================================= */
+
+    .action-buttons {
+        margin-top: 2rem;
+    }
+
+    .action-buttons .btn {
+        min-height: 50px;
+    }
+
+    .pdf-button {
+        box-shadow: 0 0.5rem 1rem rgba(220, 53, 69, 0.18);
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .pdf-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0.75rem 1.5rem rgba(220, 53, 69, 0.25);
+    }
+
+
+    /* =========================================
+       TABLET
+       ========================================= */
+
+    @@media (max-width: 991.98px) {
+
+        .result-page {
+            padding-top: 2.5rem;
+        }
+
+        .result-card .card-body {
+            padding: 1.75rem !important;
+        }
+
+        .result-title {
+            font-size: 1.8rem;
+        }
+
+        .detail-card {
+            padding: 1.25rem;
+        }
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @@media (max-width: 575.98px) {
+
+        .result-page {
+            padding-top: 1.25rem;
+            padding-bottom: 2rem;
+        }
+
+        .result-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .result-header h1 {
+            font-size: 1.65rem;
+        }
+
+        .result-header p {
+            font-size: 0.9rem !important;
+            line-height: 1.5;
+        }
+
+        /* Result banner */
+
+        .result-banner {
+            padding: 2rem 1.15rem;
+        }
+
+        .result-icon {
+            width: 64px;
+            height: 64px;
+            font-size: 2rem;
+        }
+
+        .result-title {
+            font-size: 1.5rem;
+        }
+
+        .result-message {
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        /* Main body */
+
+        .result-card .card-body {
+            padding: 1.15rem !important;
+        }
+
+        /* Headline */
+
+        .detail-card h4 {
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        /* Confidence */
+
+        .confidence-box {
+            padding: 1.15rem;
+        }
+
+        .confidence-number {
+            font-size: 2rem;
+        }
+
+        .confidence-label {
+            font-size: 0.82rem;
+        }
+
+        /* Details */
+
+        .detail-card {
+            padding: 1.1rem;
+        }
+
+        .detail-label {
+            font-size: 0.7rem;
+        }
+
+        .article-content {
+            max-height: 300px;
+            padding: 0.9rem;
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        .explanation-box {
+            padding: 0.9rem 1rem;
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        /* Sources */
+
+        .sources-section {
+            margin-top: 1.25rem;
+        }
+
+        .sources-header h4 {
+            font-size: 1.1rem;
+        }
+
+        .sources-header p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .source-card {
+            padding: 1rem;
+        }
+
+        .source-title {
+            font-size: 0.98rem;
+        }
+
+        .source-description {
+            font-size: 0.85rem;
+        }
+
+        .source-read-button {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        /* Actions */
+
+        .action-buttons {
+            margin-top: 1.25rem;
+            gap: 0.75rem !important;
+        }
+
+        .action-buttons .btn {
+            width: 100%;
+            min-height: 50px;
+        }
+
+        /* Disclaimer */
+
+        .result-card .alert {
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        /* Analysis date */
+
+        .analysis-date {
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+    }
+    /* =========================================
+   DARK MODE
+   ========================================= */
+
+html[data-theme="dark"] .result-card,
+html[data-theme="dark"] .confidence-box,
+html[data-theme="dark"] .detail-card,
+html[data-theme="dark"] .explanation-box,
+html[data-theme="dark"] .source-card {
+    background-color: #1f2937 !important;
+    color: #f3f4f6;
+}
+
+html[data-theme="dark"] .result-card h1,
+html[data-theme="dark"] .result-card h2,
+html[data-theme="dark"] .result-card h3,
+html[data-theme="dark"] .result-card h4,
+html[data-theme="dark"] .result-card h5,
+html[data-theme="dark"] .detail-card h1,
+html[data-theme="dark"] .detail-card h2,
+html[data-theme="dark"] .detail-card h3,
+html[data-theme="dark"] .detail-card h4,
+html[data-theme="dark"] .detail-card h5,
+html[data-theme="dark"] .source-card h1,
+html[data-theme="dark"] .source-card h2,
+html[data-theme="dark"] .source-card h3,
+html[data-theme="dark"] .source-card h4,
+html[data-theme="dark"] .source-card h5 {
+    color: #f3f4f6;
+}
+
+html[data-theme="dark"] .result-card .text-muted,
+html[data-theme="dark"] .confidence-box .text-muted,
+html[data-theme="dark"] .detail-card .text-muted,
+html[data-theme="dark"] .explanation-box .text-muted,
+html[data-theme="dark"] .source-card .text-muted {
+    color: #9ca3af !important;
+}
+
+/* Article content */
+
+html[data-theme="dark"] .result-card .article-content,
+html[data-theme="dark"] .detail-card .article-content {
+    color: #e5e7eb;
+}
+
+/* Explanation */
+
+html[data-theme="dark"] .explanation-box {
+    border-color: #374151 !important;
+}
+
+html[data-theme="dark"] .explanation-box p {
+    color: #e5e7eb;
+}
+
+/* Confidence */
+
+html[data-theme="dark"] .confidence-box {
+    border-color: #374151 !important;
+}
+
+html[data-theme="dark"] .confidence-box .progress {
+    background-color: #374151;
+}
+
+/* Source cards */
+
+html[data-theme="dark"] .source-card {
+    border-color: #374151 !important;
+}
+
+html[data-theme="dark"] .source-card hr {
+    border-color: #374151;
+    opacity: 1;
+}
+
+/* General borders */
+
+html[data-theme="dark"] .result-card hr,
+html[data-theme="dark"] .detail-card hr {
+    border-color: #374151;
+    opacity: 1;
+}
+
+/* Links */
+
+html[data-theme="dark"] .result-card a:not(.btn),
+html[data-theme="dark"] .source-card a:not(.btn) {
+    color: #60a5fa;
+}
+
+html[data-theme="dark"] .result-card a:not(.btn):hover,
+html[data-theme="dark"] .source-card a:not(.btn):hover {
+    color: #93c5fd;
+}
+
+</style>
+
+<div class="result-page">
+
+```
+<div class="container">
+
+    @if (Model == null)
+    {
+        <div class="row justify-content-center">
+
+            <div class="col-lg-7">
+
+                <div class="alert alert-warning shadow-sm"
+                     role="alert">
+
+                    <h5 class="fw-bold">
+                        No Result Available
+                    </h5>
+
+                    <p class="mb-3">
+                        No analysis result was found.
+                        Please submit a news article again.
+                    </p>
+
+                    <a asp-controller="News"
+                       asp-action="Check"
+                       class="btn btn-primary">
+
+                        Check News
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+
+        <!-- =====================================
+             PAGE HEADING
+             ===================================== -->
+
+        <div class="result-header">
+
+            <h1>
+                Analysis Result
+            </h1>
+
+            <p class="text-muted fs-5">
+                AI-assisted analysis of the submitted news article.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================
+             MAIN RESULT
+             ===================================== -->
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-9 col-xl-8">
+
+                <div class="result-card">
+
+                    <!-- RESULT BANNER -->
+
+                    <div class="result-banner @resultClass">
+
+                        <div class="result-icon">
+                            @resultIcon
+                        </div>
+
+                        <div class="result-title">
+                            @resultTitle
+                        </div>
+
+                        <p class="result-message">
+                            @resultMessage
+                        </p>
+
+                    </div>
+
+
+                    <!-- RESULT CONTENT -->
+
+                    <div class="card-body p-4 p-md-5">
+
+                        <!-- HEADLINE -->
+
+                        <div class="mb-4">
+
+                            <div class="detail-label">
+                                News Headline
+                            </div>
+
+                            <h4 class="fw-bold mb-0">
+
+                                @(string.IsNullOrWhiteSpace(Model.Headline)
+                                    ? "No headline provided."
+                                    : Model.Headline)
+
+                            </h4>
+
+                        </div>
+
+
+                        <!-- CONFIDENCE -->
+
+                        <div class="row g-3 mb-4">
+
+                            <div class="col-md-4">
+
+                                <div class="confidence-box text-center">
+
+                                    <div class="confidence-number">
+                                        @confidenceValue.ToString("0.##")%
+                                    </div>
+
+                                    <div class="confidence-label">
+                                        AI Confidence
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-8">
+
+                                <div class="confidence-box">
+
+                                    <div class="d-flex justify-content-between
+                                                align-items-center
+                                                mb-2">
+
+                                        <span class="fw-semibold">
+                                            Confidence Level
+                                        </span>
+
+                                        <span class="fw-bold">
+                                            @confidenceValue.ToString("0.##")%
+                                        </span>
+
+                                    </div>
+
+                                    <div class="progress"
+                                         style="height: 1rem;"
+                                         role="progressbar"
+                                         aria-valuenow="@confidenceValue"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100">
+
+                                        <div class="progress-bar @(isReal ? "bg-success" : "bg-danger")"
+                                             style="width: @confidenceValue.ToString("0.##")%;">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- AI EXPLANATION -->
+
+                        <div class="detail-card mb-4">
+
+                            <div class="detail-label">
+                                AI Explanation
+                            </div>
+
+                            <div class="explanation-box">
+
+                                @(string.IsNullOrWhiteSpace(Model.Explanation)
+                                    ? "No explanation was provided for this analysis."
+                                    : Model.Explanation)
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ARTICLE CONTENT -->
+
+                        <div class="detail-card mb-4">
+
+                            <div class="detail-label">
+                                Article Content
+                            </div>
+
+                            <div class="article-content">
+
+                                @(string.IsNullOrWhiteSpace(Model.ArticleContent)
+                                    ? "No article content was provided."
+                                    : Model.ArticleContent)
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SOURCE URL -->
+
+                        @if (!string.IsNullOrWhiteSpace(Model.Url))
+                        {
+                            <div class="detail-card mb-4">
+
+                                <div class="detail-label">
+                                    Source URL
+                                </div>
+
+                                <a href="@Model.Url"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="source-link">
+
+                                    @Model.Url
+
+                                </a>
+
+                            </div>
+                        }
+
+
+                        <!-- OTHER SOURCES -->
+
+                        <div class="sources-section">
+
+                            <div class="detail-card">
+
+                                <div class="sources-header">
+
+                                    <div class="detail-label">
+                                        News Verification
+                                    </div>
+
+                                    <h4 class="fw-bold mb-1">
+                                        🔎 Other Sources Found
+                                    </h4>
+
+                                    <p class="text-muted mb-0">
+                                        These news sources were found
+                                        using the submitted headline.
+                                    </p>
+
+                                </div>
+
+
+                                @if (searchResults.Count > 0)
+                                {
+                                    <div class="row g-3">
+
+                                        @foreach (var source in searchResults)
+                                        {
+                                            <div class="col-12">
+
+                                                <div class="source-card">
+
+                                                    <div class="source-name">
+
+                                                        @(string.IsNullOrWhiteSpace(source.SourceName)
+                                                            ? "Unknown Source"
+                                                            : source.SourceName)
+
+                                                    </div>
+
+
+                                                    <div class="source-title">
+
+                                                        @(string.IsNullOrWhiteSpace(source.Title)
+                                                            ? "No headline available."
+                                                            : source.Title)
+
+                                                    </div>
+
+
+                                                    @if (!string.IsNullOrWhiteSpace(source.Description))
+                                                    {
+                                                        <div class="source-description">
+
+                                                            @source.Description
+
+                                                        </div>
+                                                    }
+
+
+                                                    <div class="d-flex
+                                                                flex-column
+                                                                flex-sm-row
+                                                                justify-content-between
+                                                                align-items-sm-center
+                                                                gap-2
+                                                                mt-3">
+
+                                                        @if (!string.IsNullOrWhiteSpace(source.PublishedAt))
+                                                        {
+                                                            <div class="source-date">
+
+                                                                🕒 @source.PublishedAt
+
+                                                            </div>
+                                                        }
+
+
+                                                        @if (!string.IsNullOrWhiteSpace(source.Url))
+                                                        {
+                                                            <a href="@source.Url"
+                                                               target="_blank"
+                                                               rel="noopener noreferrer"
+                                                               class="btn btn-outline-primary btn-sm source-read-button">
+
+                                                                Read Article ↗
+
+                                                            </a>
+                                                        }
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        }
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="no-sources">
+
+                                        <div class="fs-2 mb-2">
+                                            🔍
+                                        </div>
+
+                                        <h6 class="fw-bold">
+                                            No Similar News Sources Found
+                                        </h6>
+
+                                        <p class="mb-0 small">
+
+                                            We could not find matching
+                                            news articles from the
+                                            available news search source.
+                                            This does not automatically
+                                            mean that the submitted news
+                                            is fake.
+
+                                        </p>
+
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ANALYSIS DATE -->
+
+                        <div class="text-muted small mt-4 mb-0 analysis-date">
+
+                            <strong>
+                                Analyzed On:
+                            </strong>
+
+                            @Model.CreatedAt
+                                .ToLocalTime()
+                                .ToString("f")
+
+                        </div>
+
+
+                        <!-- DISCLAIMER -->
+
+                        <div class="alert alert-warning mt-4 mb-0"
+                             role="alert">
+
+                            <strong>
+                                ⚠️ Important:
+                            </strong>
+
+                            This is an AI-assisted prediction and is not
+                            absolute proof that the article is true or
+                            false. Important information should be
+                            verified using trusted and independent
+                            sources.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     ACTION BUTTONS
+                     ================================= -->
+
+                <div class="action-buttons d-flex
+                            flex-column
+                            flex-sm-row
+                            justify-content-center
+                            gap-3">
+
+                    <!-- CHECK ANOTHER NEWS -->
+
+                    <a asp-controller="News"
+                       asp-action="Check"
+                       class="btn btn-primary btn-lg px-4">
+
+                        🔍 Check Another News
+
+                    </a>
+
+
+                    <!-- DOWNLOAD PDF -->
+
+                    <a asp-controller="News"
+                       asp-action="DownloadPdf"
+                       asp-route-id="@Model.Id"
+                       class="btn btn-danger btn-lg px-4 pdf-button">
+
+                        <i class="bi bi-file-earmark-pdf me-2"></i>
+
+                        Download PDF Report
+
+                    </a>
+
+
+                    <!-- HISTORY -->
+
+                    <a asp-controller="News"
+                       asp-action="History"
+                       class="btn btn-outline-secondary btn-lg px-4">
+
+                        🕘 View History
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+```
+
+</div>

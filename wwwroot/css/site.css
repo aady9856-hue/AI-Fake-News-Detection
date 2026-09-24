@@ -1,0 +1,234 @@
+/* =========================================================
+   Global
+   ========================================================= */
+
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #f8fafc;
+    color: #1f2937;
+}
+
+
+/* =========================================================
+   Focus States
+   ========================================================= */
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 0.15rem rgba(255, 255, 255, 0.9),
+                0 0 0 0.3rem rgba(37, 99, 235, 0.35);
+}
+
+
+/* =========================================================
+   Navbar
+   ========================================================= */
+
+.navbar {
+    min-height: 72px;
+}
+
+.navbar-brand {
+    letter-spacing: -0.3px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.78);
+    transition: color 0.2s ease, background-color 0.2s ease;
+    border-radius: 0.6rem;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.navbar .btn-primary {
+    border: none;
+    box-shadow: 0 0.35rem 0.9rem rgba(37, 99, 235, 0.25);
+}
+
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.btn {
+    border-radius: 0.65rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.btn-outline-secondary:hover {
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   Cards
+   ========================================================= */
+
+.card {
+    border-radius: 1rem;
+}
+
+.card.shadow-sm {
+    box-shadow: 0 0.5rem 1.5rem rgba(15, 23, 42, 0.07) !important;
+}
+
+
+/* =========================================================
+   Forms
+   ========================================================= */
+
+.form-control,
+.form-select {
+    border-radius: 0.65rem;
+    border-color: #d1d5db;
+}
+
+.form-control {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #60a5fa;
+}
+
+
+/* =========================================================
+   Tables
+   ========================================================= */
+
+.table {
+    --bs-table-hover-bg: #f8fafc;
+}
+
+.table thead th {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+/* =========================================================
+   Badges
+   ========================================================= */
+
+.badge {
+    border-radius: 999px;
+    padding: 0.45em 0.75em;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   Progress Bar
+   ========================================================= */
+
+.progress {
+    border-radius: 999px;
+    background-color: #e5e7eb;
+    overflow: hidden;
+}
+
+.progress-bar {
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   Links
+   ========================================================= */
+
+a {
+    transition: color 0.2s ease;
+}
+
+
+/* =========================================================
+   Footer
+   ========================================================= */
+
+footer {
+    background-color: #f8fafc !important;
+}
+
+footer a:hover {
+    color: #2563eb !important;
+}
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+
+    .navbar .btn-primary {
+        margin-top: 0.5rem;
+        display: inline-block;
+    }
+
+    .navbar-nav {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+
+    .navbar {
+        min-height: 64px;
+    }
+
+    .btn-lg {
+        width: 100%;
+    }
+
+    .card-body {
+        padding: 1.25rem !important;
+    }
+}

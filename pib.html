@@ -1,0 +1,1010 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	Press Release Page | Press Information Bureau
+</title><link href="css/style.css" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><link rel="alternate stylesheet" href="css/change.css" media="screen" title="change" /><link rel="alternate stylesheet" href="css/green.css" media="screen" title="green" /><link rel="alternate stylesheet" href="css/yellow.css" media="screen" title="yellow" /><link rel="stylesheet" type="text/css" href="css/prtint.css" media="print" /><link rel="stylesheet" href="css/style3.1.css" type="text/css" /><link id="pibA11yCss" rel="stylesheet" href="/css/accessibility.css?v=3" type="text/css" />
+      <script type="text/javascript">
+        /* Stamps the saved theme on <html> before the page paints. The
+           switcher in js/accessibility.js settles the rest, but on inner
+           pages it does not run until the end of the body and inside the
+           release frame it is a separate download - either way the reader
+           would otherwise watch a light page turn dark in front of them. */
+        (function (d) {
+            var t = "";
+            try {
+                t = window.localStorage.getItem("pibStyle") || "";
+            } catch (e) {
+                t = "";
+            }
+            if (t === "orange") {
+                t = "yellow";
+            }
+            var c = t === "change" ? " pib-hc"
+                : t === "green" ? " pib-theme-green"
+                : t === "yellow" ? " pib-theme-yellow" : "";
+            d.documentElement.className += c + " pib-a11y-content";
+        }(document));
+      </script>
+
+
+      <script src="js/jquery.min.js" type="text/javascript"></script>
+      <script type="text/javascript" src="/js/accessibility.js?v=7"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" /><link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet" />
+
+      <script type="text/javascript">
+            $(document).ready(function () {
+                  function getParameterByName(name) {
+                        var url = window.location.href;
+                        name = name.replace(/[\[\]]/g, '\\$&');
+                        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                              results = regex.exec(url);
+                        if (!results) return null;
+                        if (!results[2]) return '';
+                        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+                  }
+                  // Get the IDs from the current page's URL
+                  let prid = parseInt(getParameterByName('PRID'), 10);
+
+                  if (!isNaN(prid) && prid > 0) {
+                        $.ajax({
+                              type: "POST",
+                              url: "AjaxMethod.aspx/UpdatePRHitCount",
+                              async: false,
+                              data: JSON.stringify({ 'PermId': prid }),
+                              contentType: "application/json; charset=utf-8",
+                              dataType: "json",
+                              success: function (response) {
+                                    console.log(response);
+                              },
+                              error: function (error) {
+                                    console.log("Error in AJAX request", error);
+                              }
+                        });
+                  } else {
+                        console.log("Invalid parameters:", prid);
+                  }
+
+            });
+      </script>
+      <style type="text/css">
+            .table-responsive {
+                  width: 100%;
+                  overflow-x: auto;
+            }
+
+            .banner {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  background-color: #000;
+                  color: #fff;
+                  padding: 20px;
+            }
+
+            full-width {
+                  width: 100%;
+            }
+
+            .logo-left, .logo-center, .countdown {
+                  display: flex;
+                  align-items: center;
+            }
+
+                  .logo-left img, .logo-center img {
+                        height: 70px;
+                  }
+
+            .countdown {
+                  text-align: center;
+                  background-color: #444;
+                  border-radius: 10px;
+                  padding: 10px;
+                  border: 2px solid grey;
+            }
+
+            .firstnumber {
+                  color: #000000;
+                  position: absolute;
+                  top: 50px;
+                  right: 90px;
+                  font-size: 30px;
+            }
+
+            .secondnumber {
+                  position: absolute;
+                  color: #000000;
+                  right: 45px;
+                  top: 50px;
+                  font-size: 30px;
+            }
+
+            .countdown .days {
+                  font-size: 35px;
+                  color: gold;
+            }
+
+            .countdown p {
+                  margin: 0;
+            }
+
+            .countdown .text {
+                  font-size: 16px;
+            }
+
+            a {
+                  word-break: break-all;
+            }
+
+            iframe, img {
+                  max-width: 100%;
+            }
+
+            @media(max-width:1199px) {
+                  .firstnumber {
+                        top: 40px;
+                        right: 72px;
+                        font-size: 30px;
+                  }
+
+                  .secondnumber {
+                        right: 35px;
+                        top: 40px;
+                        font-size: 30px;
+                  }
+            }
+
+            @media(max-width:990px) {
+                  .firstnumber {
+                        top: 25px;
+                        right: 54px;
+                        font-size: 30px;
+                  }
+
+                  .secondnumber {
+                        right: 25px;
+                        top: 25px;
+                        font-size: 30px;
+                  }
+            }
+
+            @media(max-width:768px) {
+                  .countdown, .days {
+                        font-size: 12px !important;
+                  }
+
+
+                  .firstnumber {
+                        top: 25%;
+                        right: 8%;
+                        font-size: 30px;
+                  }
+
+                  .secondnumber {
+                        right: 4.5%;
+                        top: 25%;
+                        font-size: 30px;
+                  }
+            }
+
+            @media(max-width:475px) {
+                  .countdown, .days {
+                        font-size: 10px !important;
+                        top: 20%;
+                  }
+
+                  .bannerimgdiv {
+                        padding: 0 !important;
+                  }
+
+                  .bannerimg {
+                        width: 108% !important;
+                  }
+            }
+      </style>
+      <script type="text/javascript">
+            $(function () {
+                  $("[id*=printPDF]").click(function () {
+                        $("[id*=hfGridHtml]").val($("#PdfDiv").html());
+                  });
+            });
+            $(function () {
+                  $("[id*=printPDFEvent]").click(function () {
+                        $("[id*=hfGridHtml]").val($("#PdfDiv").html());
+                  });
+            });
+      </script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112591026-1"></script>
+      <script>
+
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() { dataLayer.push(arguments); }
+
+            gtag('js', new Date());
+
+
+
+            gtag('config', 'UA-112591026-1');
+
+      </script>
+
+<meta property="og:title" content="Launch of Free Annual Health Check-up Programme for Insured Persons Above 40 Years of Age by ESIC " /><meta property="og:url" content="www.pib.gov.in/Pressreleaseshare.aspx?PRID=2258702" /><meta property="og:description" content="The four Labour Codes notified in November 2025 represent a significant reform in India&#39;s labour adm" /><meta property="og:image" content="https:/pib.gov.in/images/indian-emblem.png" />
+                                <script>!function(e){var n="https://s.go-mpulse.net/boomerang/";if("False"=="True")e.BOOMR_config=e.BOOMR_config||{},e.BOOMR_config.PageParams=e.BOOMR_config.PageParams||{},e.BOOMR_config.PageParams.pci=!0,n="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="C4E7H-KSCMC-422L4-W3EM5-U36MF",function(){function e(){if(!i){var e=document.createElement("script");e.id="boomr-scr-as",e.src=window.BOOMR.url,e.async=!0,o.parentNode.appendChild(e),i=!0}}function t(e){i=!0;var n,t,a,r,d=document,O=window;if(window.BOOMR.snippetMethod=e?"if":"i",t=function(e,n){var t=d.createElement("script");t.id=n||"boomr-if-as",t.src=window.BOOMR.url,BOOMR_lstart=(new Date).getTime(),e=e||d.body,e.appendChild(t)},!window.addEventListener&&window.attachEvent&&navigator.userAgent.match(/MSIE [67]\./))return window.BOOMR.snippetMethod="s",void t(o.parentNode,"boomr-async");a=document.createElement("IFRAME"),a.src="about:blank",a.title="",a.role="presentation",a.loading="eager",r=(a.frameElement||a).style,r.width=0,r.height=0,r.border=0,r.display="none",o.parentNode.appendChild(a);try{O=a.contentWindow,d=O.document.open()}catch(_){n=document.domain,a.src="javascript:var d=document.open();d.domain='"+n+"';void(0);",O=a.contentWindow,d=O.document.open()}if(n)d._boomrl=function(){this.domain=n,t()},d.write("<bo"+"dy onload='document._boomrl();'>");else if(O._boomrl=function(){t()},O.addEventListener)O.addEventListener("load",O._boomrl,!1);else if(O.attachEvent)O.attachEvent("onload",O._boomrl);d.close()}function a(e){window.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!window.BOOMR||!window.BOOMR.version&&!window.BOOMR.snippetExecuted){window.BOOMR=window.BOOMR||{},window.BOOMR.snippetStart=(new Date).getTime(),window.BOOMR.snippetExecuted=!0,window.BOOMR.snippetVersion=12,window.BOOMR.url=n+"C4E7H-KSCMC-422L4-W3EM5-U36MF";var o=document.currentScript||document.getElementsByTagName("script")[0],i=!1,r=document.createElement("link");if(r.relList&&"function"==typeof r.relList.supports&&r.relList.supports("preload")&&"as"in r)window.BOOMR.snippetMethod="p",r.href=window.BOOMR.url,r.rel="preload",r.as="script",r.addEventListener("load",e),r.addEventListener("error",function(){t(!0)}),setTimeout(function(){if(!i)t(!0)},3e3),BOOMR_lstart=(new Date).getTime(),o.parentNode.appendChild(r);else t(!1);if(window.addEventListener)window.addEventListener("load",a,!1);else if(window.attachEvent)window.attachEvent("onload",a)}}(),"".length>0)if(e&&"performance"in e&&e.performance&&"function"==typeof e.performance.setResourceTimingBufferSize)e.performance.setResourceTimingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var n=""=="true"?1:0,t="",a="fvalys3incfhu2uzvcsq-f-ca788c083-clientnsv4-s.akamaihd.net",o="false"=="true"?2:1,i={"ak.v":"41","ak.cp":"1825201","ak.ai":parseInt("1215205",10),"ak.ol":"0","ak.cr":67,"ak.ipv":4,"ak.proto":"http/1.1","ak.rid":"62b0a4d","ak.r":34615,"ak.a2":n,"ak.m":"dscb","ak.n":"ff","ak.cport":41830,"ak.gh":"104.104.138.124","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"bbr","ak.t":"1788455077","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==H8kd3+k3+Td1TMnRUAUY/IYSLzVMYPCniIuNLGBJAJ6LgUtJKRkG+QLa+mHQHTwAFLFy8jUXqMwXFdlkAqwPXl/XYRAlVOLNfz3uggAlum5PS1dxm8+pvmerWQ2alNYaAClkJt1zOAbm7MVttbEWdACPJgr0ikmCvTPa3/P+rpr850gdcH226yLmwNF4T4pJ1dpmWgHSsIgDfHCbHHan2fs8gimKD6AFkROGny5CDU0pK5zhNXL40gNcQ4m4v6uuIoRM3rGfeLaAgS2+Z+A0MaYEtoRC8zwgmNUWvxLLJkurb8VUo5fmT3l256F7W3H0QvW78RySuNoaUzO1Clwdh4DA3/n5sLmVApS7BmhggAyCUpDPKLqNR3M0sUIgVULgPFgu3ZEA084WxpJ4WohCnNUEAao6UMg51fzSIMZvpBc=","ak.pv":"9","ak.dpoabenc":"","ak.tf":o};if(""!==t)i["ak.ruds"]=t;var r={i:!1,av:function(n){var t="http.initiator";if(n&&(!n[t]||"spa_hard"===n[t]))i["ak.feo"]=void 0!==e.aFeoApplied?1:0,BOOMR.addVar(i)},rv:function(){var e=["ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(e)}};BOOMR.plugins.AK={akVars:i,akDNSPreFetchDomain:a,init:function(){if(!r.i){var e=BOOMR.subscribe;e("before_beacon",r.av,null,null),e("onbeacon",r.rv,null,null),r.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+<body>
+      <form method="post" action="./PressReleasePage.aspx?PRID=2258702&amp;lang=2&amp;reg=48" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="sc_HiddenField" id="sc_HiddenField" value="" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="d+pGLC5IZCLJ8j20Jjh8MH8p5cm32hwzdIr9lY0wu/YFglIwdaYJuzn8fkZLsTzmbbhUhZmW02YRGIfI8kZgmwco6MfmDFmBYFA8LQiq6ROue8VsZ2v5lUqHvrBhp7KiX5OeArizO3zVn0V8YNu1MzPazRJ1Ei0xNz74jxxq5JiNQwlZoTQcbAySrjhVL3re9ktogTLOA20BtbQRzx9RywdAppW9tJyQMfb498h75lskV5ZKgLZe7gIzhAAweAHnv6Wf9SvsN1iTu8nd///MVNtkbsI7SNvYbB5J+1TgG52efd7MZfd7XsMQOOUpSb/pDVz2Is6t55UaGh0zLAqobTYYlX1dbWooQmOEGWfVZ2TSb0Fvo06WKXDzN1lZKts4i0z4RxDjCQxFIyl/4NNHKLijSFwqoxjp7c+NagoYb/VaoOuDA2E92AmXKiIx5LK/pdUoyWhczVG4EAreoxlUnRmFkYg72cqv+K79DCfBMsbz7dZypZicD9ZkPAX5g//kj0VIUI4uycxkbYdRKZmU7k8Em0lde+RbD5/heQf/GjW1qyfewZMxqJhx3ZWBD1THRDG4ODrJQCdVOeo8F6poRZm6UD3QxVy+WWYEKPpJJxkkdeE8NC8Eq8RsQAFKY+sqGYMQW9hyKTvIezeORBcV9XcCXNHoD76gtTBdkHZHvBxR/Txk15DaonLJ/2H0/hwMn2ieNlOmLhiFEpvmdX4tfM6oNVFIoWSU27JtsePDFQB5FTUTQRn/d4vCvCJ5f2K4pZ+NQjSbyIgPVWa49Jm3KrHTEXh9bQLPDmh8DJ647R+z4ckcSQNlj8R0dQ8A6IqyHMyOb6/eC9gZiymc7y9Ahis+3pDCWtLH2zQA6VekLe6SzGy93icVHGvt7xboTakirzBmwKy8koLx4kigWSfpg/wOelFSzBAn9w8YJlKMLa11sUIFzW64IIeoKOu3eN+AD/pE5iSm5sf+5b46NorllmNUIrm4rS8GmY9d90rBNvAfFAPdC35k+9pH4r8frrqR4c8+BH8XcY79R28p+hhG50mlR4QZNLOvyQOoY8COtaqju3EDD2XpnlNu32LLxghx3U7KYZDrfYhJjh6wVl/vEK4E+OE4bR4MTc9icWCk9azE8J3/eALKcmzWC6iiKjFrhOupV7w8AluWfcAPx8ivoMHga8wBaITILOPhUjfaAWYYZ2YcKpen/EMdR/kgp61krLNPSIRqKfGuDep74wc6wpj6BC/S+nqtF21uyRyUBiGNsicBOD5l4GgyiWLwdKq1n9UXc/Nq/1gmAH2cdkHP6VxQdIewfqHfx2K70XFRMzg1TO4+j9ewuhwVa7V97WAPt6d1SdeogIlKLYycWpJ0hmBM0Ixursj846rXFMG9TNcjTekEsqFfHuIB8eeAYF8O64o42KZmlK83OwD0NW3bjRkgW1KdH6BWIHvYLeNBgI3SEyxMv69UKJmYCUFgxR+iLthYEkkjnUo55pbbFJV3OQnF8MUbXwREl9eRn0FHHmbhQKNwjjId6K7vkUN1vfkD2YajQIpVyVNjDGb0oXSeoF6KsL6FgjXpfmO49HUqbT+nG6LjUeK9BNxILbVG7c1VlrVfaeW2Kr6MhH5XylFKvgzct7PuJ0tVMNmtQaSWoygSnV4x/CfBt1eVmj8quBoWi7jEGpfQxB0ky4Eag/GEmUJz59gmv9TH1CN4PBY/WauRzdjnONdl+rQk5G2m/eDteB/vf1XFgrGSyWU1ktNt5Kbv+f/JEesoU3vevmWABv0q5yKWtmiGLJxUeTh6qWshFWgAqd00xsbtxfL8CZKfzOEpn4RSo2cPwwmBLGFjDwVyovlOtIxC8nBRLJQvv3lGiN0L/6Qh8dILxi9Tcr1sIo+6eYSyS/l2zp3OymoOHmFMR5pJp+nd8UJ9IRz3epcyGP2IIdqlKFgTWuzZXKtV7ep2C4gKyblClpXzKXOP5c+smG8oIp8kQXnpIvz8ixU0YU2vHp2MK04jJQRj7L4QOK/epx5g0SRnchUzC6rlz/X401ZQKQOsTHwSMI+iv/AbGpAPiPRblTZZi6UrcbA9w1RVxdHiQ+ohLeW9GeJHtSNgentFah8C7yk7OPZwLpYcp8bGh8g5Kfg3SRXEYfc5JzVppjKPL3DsfOXnZ/7CgehRUC9cteqJUtj+0n1a/74J5EUk70WIAcYtI5DGm9vfccuD7nY6q61Sr6MjUywdFkzGmQhoeFors8KEP6Jv5ZHRHtTlY6jLMz7hjONxZRtNBP/sGoVf8/dCKd1l02Km2Q3gPyJVlRvFIGANv8Mczs+HMRWVrZXx1IP7VWMRftTtd4+CNwhwJBexPoEqTbyk7fuxFEcyrn3UjPGKu8DA4Jz13Xh8ofJRwsxXYmtE4navNb6IuFL20BvMYt0lrlAeIGXL5HYeFGwgxleKgkx/Iu+Fs9tAhtpMVGD9raCsmXHba/Gvyx4AyD+CVYfIwbsxSGdU0SJMLoeUh8gNtSNueLeC+zk+1S9+Ly/2zFxIINf6vl5rU8XS7W6yPJYH6F4ppMJrOjwKafDTKSMe6lLzhsOpMYW1yI/ADlAAlb0egpQWw07JlhkC9zF57mzQeA5n6dFRttrcPfAyd6x3AgkYAZQXtQgNpyuPB6hAmgGbooNCTyigPSKu2/vUdiHOIVUob1TD6iGqKLllXoHgf19tsmmwBv+2Z3gs5q4Kny7ejlB0yB/hwKQNnup7CzYCFUnv6dbn7jRJmwXndJC3VsKyt/ecD5MMi5aMjyjvscPpBZr13DMlwtdGYSHAIg2YLxHF2m8IhVPBG6yndw+hx1TbnCXziOH9cMkFQNVa44cv6/MAkbrrWY7kDQcE0fAivJBRmnGNjdc6mGs4P/7oB/QR0qChdE9Z+7h1qPD+jizFuAvbRF3mc0GIrhH+AnyQ++bGoUfuWMXg97qTapLwBWqRrgWeaEhykNxBRU4LRRVSVmDs/Cb6JbFmTDHCqvivumreevwUbmHySfEUJabuSrjsaojtAbpL2cZxj291yippDrItu2Dr6oMJv16S8EgGysdAhBGOebx8EkIGzX8Pb2lTWZgPTfIOlKOaA3dLtZKz1YZ3Oroi2q0oGHOeoR547MhBXcs5l3dVAlhGmBla5Z0kNNrSGkWx+KcMf08KwxkjSuAyc66M6vARMsCdhwramUfp9o8j0t9D+Qh1EVcsIICm0ZmVXtSo+v5fKupW1LJ/zVua4bg1BFjT8XwDF1QKpqyICmfgZOswKtcyhTFoyikHYeJY41JebMPuPg6H4sdN1q31HV4DHtjIPaZxJyEypza9tfjbj6xTeFATRxofkOnDsdfrz3BsZwW7GUWyujMnRGq9rLgnQtkpTW80JFXeO7wACU5QPfyLkbLbdxKd2hKC1ArcGYUCZMdZgXx3Q7yuTI+7X/wXZIQEf6xn/Klh0Bh7RudAK0wQkSVp+EHKlVq5KTGEJQfRp3WtiLLOvLD9BKuiZ52klus4hVxBKl6hDNkk+ypHoqhQKYNiqIsxYyOKEetx4QH/c6SVVwTSZyPt4zUcvZJ6eHnkLoNbZZ+a3P7jtFnX54JB0nMExm7k18JtHhj5he5YLJPJYXS9OYhQ0azQ/2l/xRQGY7ZZH3sJxgxKvbRKn0nxk61mbxSJEzaYZcsbrQ9I+Fkr43i07N7Xmku5M/qOjcQ9QJfHtxOBE5i/UM9ZxTCO01J1994U8Yy9lohtGG/i7EQJpGDDXwteurJBcIp9DOZe/4VPvPWNVq5QdhHNNM7AEVxHuquxsDhB5C6YbunZXbhKNUZXJuS9CfLDkNEzLQ1b1waMELWskDgxhehT9vIjn3gAN++h1M/n8psR+xV0BdyNwAX6BBA5VyPbQO/SBUq8LGQ3Bzl92vH9kbC7PU0sWIXaYU+8dBYkcW8EUYguSHIQzDSbrpbh8h5Pn0EUzZF80OnqNNxseFdZLjjKIQ8OJenzmIm9yVHB5pcWVRilUrlxXC8rCc1epBqjUdfeHhIQOjhZQtA9vat/XN8RZa2dvmnlKCXzTaooxQZBReZSK9o4X89w2j5/NImsgXUrnZugEN2F5hQ0UbrlOdcVvDVP89ZW0d5adg74LPLuLrL5uqaajBqVlSzyiz4q940IG+ti0wSnqCiLtHvcHq5c026c69K6HFhVOw5k/xQabOKlUf+KDwcgSssxm0i8rthoYmC0V5GlwynyCPcG4N3u7b+s6UzfzijAgw9hXEdyHNf/kDqr6a2NFmOkGZ1IsLvqe32Lnnps4pKgQ360TNmrxd7ZD8Ixb7WveR4P9IlJGmHMjM/MBHqHIuaM2qak4dcw6iyrJNbpxATHK+E7WYS4ZgEhHMNXL1ygkfAVz92s4sOI64X82nuIwMlS7fWDUPJdEcfDzyZC5hmaTNQaVKbuyfve/E17bCVfAeJgXuT7NQQcQvTHHE3ZYeZIUvj6y9GCUcT/z3TgKTys3qkGspL5zj5VHuocaq4JOUCRV72E8WgY4nJJppCGPF/oHRDQ8NObY6drxgPFXHjMDvxVWB3j2yRSSve4DpOMN1YPZ8hDukmLY0ah2zSnVDU36P4N9nzgoxp+qKp96Rwjy5/siiVgiPDF1KBno00scXtGcI8n0BCR2EJmhx3l5ymUPshsDOl0Qun9WxnfCTT721hJg0ceIwDR5Peb4QgHGcGpks6KduDpsZXE+Wtk2aTO8tYmH4saDYi+YQ/E1f3TCGkjZloJZspWRtIbIqcL1jH+io0JvuT3T0U6L07g+SciGbUa5XxigthIU6NOitEBx9yVCcriCyz5BKZnv9QZ1+598t+5HGI4dA7dRh5/sbg5hxVGxiFraImzXISGdnBXwf8+TulIn5GIXVNIY6skgB/W/4KA7ERLZ7pU1EYXTxjzaX7dLVZJ2af3EFp1skKk4Y+9xbdo6zmHlY1lzzaLq40ucJABha+9HIQlrMvJ88hmti0AYevFLDDe1QPu5Wu3QDkU7BzAI/ZsJO+boc7lALwofV5tSHEc/DUfSfp9Fz5jANW8ZxPHYr4EnR8JG3az3gr7Y7v7nshiQ7dW5mgSdpCGo9MmMDruU83kQOnAdI8JIeEuPWfaadKxC6P49V5Nx/X2oehIrytsW0bcoKPhd0F+oQbyDVL0cGxq71lQpWjIWEulRDDNX9WjH/8XXl6YVaC97Sd8qsAqalzjR1kg8q+TQnU38Cku2+MDsWDDV6Pm/Y/EUXVSBJLMVo3zoLKj87ToDRliRv1qXCZpAjGGwrfwufvF3SlCLQEgrHxGKN0/n5bdQISubMSEkal5Epm5ref2Xxp4+cYfp/G7xwa6ayA90BUS/qwfpLA0pa1CMsz91WP7AnqLzf1DExa326A9LS3gt5NQ04dCDLcC3pz0p8PkrAtZ54oC1582v9icgWlrO4UdKLcqOhXfu7/4xUCeINERcBVpKn/yDzlZdqGul2v7gKrdx0Yl2Es4HMvmvg6f+pCCPbeSjK+Fi08vNvsdu0uY1DoQw5Mn63VgxIHLEpX3J2QmeT5EnKsYjzOjSA81Chs3M4gTa9Te7i8smS+hKWXhT+9V/1j+I62KgVAYUaq3dzDa5asS9d48h6RqUa+/wra3u3SbSE1jrTZMKArZZuL10sMKqDiut6xzGx3k7be+zfGziPJIacpdkI/JlZzqWruGeHNQ/+59I71uFRTZhPBtoRPVwo256Culhd80ycoJm/J7OLDbGrpCh7MMJLZn3w2z0LD4/FMWFG4n0IrW6qXRFVmuL4LchPCnnBUrBF4b7zRiYTPkumlom+kjtDrNWqU8F5ApLvyw/rIk5AGW5fo06QsFTGKZjbnc2u1T/mS18O4eGbcSBHMvf0QV8waORLMN/kGglmXhVdDAWu5+lii32dh5i30oEsZyaJg/D+lhAosVPzQoU0+Hcr60b/hiVEhrFPKFzPoX5Oj8WtatkqL+/iq7B9ZsHWq52uX5A8j7GKu47D8Uzl/Beug3mUgIHC2VzXQuPFUVE4nZmcEbtUJSo3wrBXE7pcpyGoNj40alHmNsqt6f+Cd5wg10iaoPfq1p2MhGwoIDLS1ngXR+n09u8PMdGcpDWj0423SL55KD38nCSvUdVzig2yKH7zDa4qGu6K0Hs3UhfwDcDOOHGgqKEY11tIP/4sjaO2ezxIMV5KZeJxfbOv0xvTIik43jU1Z0GCbWU/YTDSN8N7GbsoQ45nZ+hofy9wk+RBus2mrFbn6R9WTBRe9tAyUdtvSMNjbZJ/apAVztQb7HfOLSv+PU7i6wjHBx5fuUsg8g/8U/vl2MHa1RpzbTgcO9QmOkmWaM+xCru/w14KJsLo2+XkY6OJ2jSyJQq+SbzmaXZo2cnclyhcnE12OP+aBeCvI/Cb/MbR5Y1gCMPnsBddJyT6PzSU2sIv1unfWCsyxDVu+BCed1Rk2+7dlhtNZugFQLmqAb81Z0okkm7o4x/PiRILXAWope7zFWrBCTPzpEWq8hDc1SkTTN/lDtEE+dXd0HyLi87cFP7qeNOqcckeNZwAGwsoTaoP7R8sKtKBnzZGLrbN7fp5FzKOUv08iP25gMd6fW6mOW0d8SZiEUf3yVycUe3e13vzOs/btFwM2jY73vVS0iZB0wcvV6NzfrqBOmO3iwVS0wi3qQJJL0EglkGSWCNRYOotCkOHVub6y7c7cLfSZwXirW+fI5BhA5tslxJyESlLVU9cqRV4TxC7L7b+j8J84nOLMdQArIwc1rvev7ejkDlrkkQaj71zv7DbbemOQjo2iL/+NzvQVBgDU+xr0KNYade1jwAWUqyqZPXN3Wuqm/XA7RXgiUNJUp9wb5Z45nv42C0qQYv85o5+tzeo6qWLg2F1Qbk/7domLlsezj9nqtH/5+S8Gqu85+BfCAHXk102cFXSjpxfuQyx3+a20WTtoN8YV9aojPBzlwyMWdxF3I2t7K33mlTRay8l8U9b6BKJAqjblp7Hlkc9QKpunDj4QGiWK//cY47bG31sH2dHnOobNiljFBJd8nFH56MUVECEjvkV/cHJ922RuplUK4bDEQ9NpgIx0hUAHWv1lHOJXTovSaebxp8IMavxNV1wKYcirbAsx6Cpgv0l/l3qTkezsvTIGcpnAkrFrOGIeCBaXtpee1Wnq0bEiTk73oVr8pDbeMYbHUDfenKLZy+zmUydYg0+lGN8xhEgExK7pZTDp2QNfeDL21tmuycsZoqNA2GvkwSI5RwqosRA74qRfYeOUYqGGIP6EZYAeQ7aWJfrlagApncjjyP8wkm2u4lDFW5iyQir7WJj2sYvcwkYMSLy2FetYszBPM64JsvCoCrtOsyy7LseEZaG9Io9zanC4liDMPgxHYwogVaCuq1XrzXW8uUHcOMV5QVazaONdjZV/LGGSZ6Q2ZeWVI3AcOtttl0o5UAqdYmA9keFwCbg8xLlUl7STDgiQeuu9EPL3ecXsXPBm53xdc2lk9qLSINfcTVfKyKUW9hm16OHRvauF19Vq5XfVrk8eqURr4q6XlUpCwBI7D+9Z5wsoGobrSUDCFf4ny4Fb7LLVclIj5q9ZFNIt2fTgyIRhwJcGtVaSVv3guxVWgh4rhZ30W95ZfeO0ldgmWTVfqSI8PbDOnIkvcsBcoKMa2w+Qgi+XTAY7Ax74RVloeXUc18D5EzogHFxsdhKHPXAheiS+xBYLz+VCVPm0Eq92IeOsHIdT+eXF8x6wkqBaITh7nf4u1FXZ86ysapoIJegl6Ss99IQ+VX/NgRPojmv+k+FRnDEZbX/AT+hctDbYED9pHXbyiflPIzT1QNXauvOdIw827Pu9pKSplxJ4RG3js3DN82wEIrssmpbh4Ev1NOYfwj/s1/j7kIPZyCEmRZwbtu6tdDbyhWF+kd4yn3iyd71IM+BPerWkMC3IooBXtl2XlkVo/1zWrKTqduLzzKGAeKubM3T7CKBlqwCcInb6D74/bFI++37y7DfSYL+7RneagAcS8ZSEKV71O9N79NFPIpshuIM1DsjzSXJ8K4MbYD4hpOPv+1OUh7GcQE2cAdpOJbPjGZatWNjO/undWDH3qYZd37wua8/z/J2n/WhtYTdHdF4etHGMypkAG3D0xxAWhESE3YL/Xxn8105EEsAtWLDichHgS1MBjUnbKVI0ciCgqWNlTT6vBqyjSYC+f8Hx8dHgw+IoVDfx0CAfKQ7PfJPi+4LjeNpeEsmIg0+evqUrBGmBLfYj9TFIio9IFGtBNtssmWUygyftJk5hMav1G0Ms64PK/kSHeftDD15Kca63fHAcU/Y6Xhqo0dzhv5+SPw3dtIb5E7nM5FPpv2eAznr10F5WqUjWKk8xBX+P6NZ8lcqoCdP7aK/eJkbwWfMEwNbFDWM57zRmsybun7MojxOxoViwxY1WuNipFnUHTBzcBFBYjqD55d28+pjnUMw9S75xMTfAACgX+++ZAMZb7FUI5o7Z+UVVDin2m4vs+whe0C/dAFFJodH2EfcxESGK5yqErC6m4FJe/y6uSnx5kXUNmHLPBoxr6qyAfVw0g6Mn7OeLyWR9v8Abu0j4bdCntwyn3fImaF1Kt7xgMcW/qh5YcjaegACZ2+osIVpmOdtU8XIIKWUXLFOPzG0cHw7R0oT4KSp/SH12G9vaZesVXnSR+cKvf6XZo3niGVXXbhgNng2Z2OLejpwntpchFcO27BbTTaVGNHFpXKRVhuF5hYg6ZQ6ZnulPHpA7jtJtsCFVw/JRYm8j2+TQeprZ0YXmUNyDEVd3noQC6ndS7Bmp6MYX//8VWVjmn0Dsw4rpkduM2b73f2pjXn7ezSdiXLzswXAu8WQctGpHF7VyPDY5FgUIlPJmHan830ncyFrbZaJHGUyzBH3RJi7Wayd1WK6Wfs4S6nxb8Vl2IGvJ490DiLWiFj9D5A9YFlYK9fUF5XOjbhMsiX4gUZ/oFa0JtOUpyiM3fMUbTL7xJAk6lq3qObTs5JJSlOcT84PExdrAzRA+clc/z67wE8kfBXbuI2yhoHydUKaEdj2I07/DplSSk9/MvAez+5ySILCbG3tAGIaWga9nFjG+zi3BdWvTk5IoZ9ogBsgXUa6N8hyhacPPmN3JQ2jcUXkqkEwE/PCSUIZ3sT7f5KTEDZ5NNeyFkyiIbArGqTqM43dQtxUYo2xrIbgc1Vcn1BjT0Ba5FM4svTSAJ0YLAQkWyi3/KQgxMSJWcNW1oB/S7eMal+NJEdygFXfW/F+XeQtUWeXtyYRG+nAI7gWSwuXBZhCEdL/N7dTor+jdvIW7Iz0KZRM9nQMNrqmRSmWYJwBzMfhG1TXn8ikfurUP1jc/RvD9DiS0ninZl099POjMYG50vw22kYe3FkR3VtpQ1b8qIYCO5mUuyMddQJF3MG6W1kb249U1r5MzWUD0Gb6tfLMMmeXP2255U2aIE4TTntroeascz+tatc73+wPtIQDYKMvqffJqwePCumrO0YWrJoNJ+L8nQHeKrd/twhvaW7Glwzf54SDZTRmEXt8oejb4QPqSS1kthIh/WIHg15MgVXjmzq6wGoRT8QZiJhcvQ3vioxOAMHoADxIm9299p0M1C9We/v5EWUSSmCP12jaZ54yipi88M+njZsTUEH7I84ftZLOEwzNsTJqVGqWbUEOHRM69XoUCXf+8Dn80bWsPymGRnPrjmt/4HZZnKBbaCH64mj5uW0MCTkg7B2AOrKW9dG2Ol4INrbNFzea2DDPDR6LxArd0VPrIMEunyM5NHj5tk/IiqKNLJCaMTAY8L6rImjnTrH4ZrHTQo8dv2UQy1FMoA61JVjxfL90E6g9StON/ssT5Esf8gA46WDDSIcYrZOHl0eTpkPPMiZy0NumAWhvT8zJnXLHhdnqiJa9jwu6zO/x/oAnCkTeCrd1IpNEAWiqLZyLse8eI9p99ZMy7Scd8viD33IlAFbNWuLDD+YSED29E39c6LgLOEqDB7hADHKySNe0QbvYv1gLwL1nrM6p0JfRpQyCn5/8Zhp+JDH3UbfmP1Wfawe7cfBcl3C4su+zCIlt2eF1W9Id7A4HNWxMtnZOwMTfN29JFOqdz7yPxC6Lgrzt8nd2YCyteBKVwil4OzT04q4fJrKJjo2dLmG/Uj5lTxiLS5Hfi+eA4iJ/sXdW0s2crxPKEiq2Dzff//FYl/hakfDtcgxJgWP4H94GOWydeQfiYlPyA4Z0lTjeS6z/z7zWnIvjFiz3eILtPVhA3rerRhxuDTA88HJEyihdU1OKUSjhUsPPlTctt7E4HB1eXDlZUceVbxxEhGaTT9PxwJcZg2VR7SR9UbT6GigbP2b0VNl5Fg6nh/lOWTMt0deCyfkzIwDlMWmXcBHMb7jANhJu+OhKntDNrgbvMo7YfPAd0l3uRyJiZSLKXutp+sr9eDeuewpSVlJH/ecxmlgkfIaDeVOD/pA9ZiiHKydQ1tjAupI83wZHOKq/q7vmbf0xj1sQ+JqD8CL1NoLcxCmVOjM8WXS1C96D+mvzj+yQ4PMdBQAWvEtY//uvGM1jwZeYSobo+KvWny1hqfA2Jl6Xib8bmuzpK6F5gdf5kmEo+ljyXb5u/ZbSlFYKGN+22z8CbW4wjQu3FsYUQrcBr7tTjk3FMoTegzbIMlVgAec0ypnvyQDBCQXYpeDLwjGGk0cDLKYecaTbYsEH65me4O3t11ZntYlKfjMCSMGeBk/Ec+KelHFDJAEpZe3kTHzbLVSDz85z1pSedt7SFzjUPuuNllRJCr9Y6Le4DcieR/xdwGVZVKD8Mlj/TMyntMPO8Ro+mZz2nlisBEm3IqqBT4MuXwu/VZFFljmOaF8SHzHATQnPY2NB/m4sXDOF2RWZap5QkuEwop2zIHr2DntmBXCrLYxVCUm6bAYy5LGkezzLMMAsBJjn8o975WKjUoGiz+g9A1OViKnvHjNl8nqMnYibZ1e8P5hiblzTlmaxs5+mhPHVbEodcLxu4NANpm70wo9bkG4Rz2ZEGBrD7ph/25B212u3oS9GSrZIYSEjABWTpHf3usXzXi7DvOSpGjKCzXNNf+7YYXApNMvOKbGSmkjoLqQdgDa1e1lCnyHxP4T7RHzzuH+eBkz+SFmRb0k8O4RkfzbVVgOT5aIuSzRdhKgbpAnjv8JRm9x5s2LYQmEDgaMqQjbOUZbPknTVQj0XRoN8PrUk2fqGEU4bHOeWOwqby5xqxlq4tK4cjArkLXPABf5dwKaK2sSJKmFPuFKK2P1J82abF3yDE1N9v1mh0J4uYEkPW/1ngIM5xXHgm5XRg5HHFv+XSNscS2/hipqi+I1INvUEdYCyKUnXG0+cRCoV6qcXRcotWZiZyFVyDQeQyvF0Bz50uAGuez0LrVJFq/BbBngXvJSn1qSIvzww78aS4DIQ4eOnrbN6XVVyD1G4afG8KgZM9lQxJgzgSeAOlS2iHhvInlfyBmMs7Rbe46UnBpI1GVWq4wqGQuqmUovewq4BK/iRPPNXXL5xYZxbXb1qtAaUMlriYmpJAuO4Ce2lxURv1g9ZU2ptX49o4kIYl4TZXt7VaBtyEU7oCZXJ/95Dhox6gibMw97yGafxXu83Dl0p1mLgkbcArd1I9z3PE10YO0NOVIzZ1OVRgXKwHIUqPvwb0a28W7faO3TsQHuBiOCwDfcUsw8Cv787fPyrF5IYqbcnlvU/k+5BbpDwSbSrR1WWFqPq5APCr9X8PEZ9d6fRjRNi035PMyBw+FPK/9SR5p56W5M4cEGz23f2Cq/YENFeWnTr+Wic5DatnT26RgBJsQPYJGe0hJiKJrhQfNg+vyw4MqFBp9FHNL2bP51NCqzcFmGezPcsK33eocsxDm3gFXN3o79cy4i6WZFO31D7Feu3AgLSrcyC9Kj4ctDW6ub6rtQOJNFVb8qdBtSMvicIBoYIS7rIRkT6eZiQ4bjVlLqNdyHxIGwOM3iHAi6AystqBn7LGZSWP6aUh/5P5jDBgSeNcOkl0eo0RHFj5UyCbvOp/glxr7X7d1umuYi37SE8xVAX6oBK7twr8vieDDZxguc+xhX5DUrKhP+M7XrjkZSUcoRMxcYW7QHLKtvihN+eskytAsIGT1HSvqgELFOTO/QvDXUc6Fbq/x8UzNcq1IIXK2/VjGrSUa+0pgDYHQp164/w3rbJUtekV+B/hxn8Zr/U+afkiO1+iPCbDRb1eGCHxgj75dFx0wQhlEuXNGsOFDKMo0lKzBIc+ikUsjx/OsMbgF46ZX3aFsj4qHR+ZotOhOP5hgj5YXdrXq+2Yg5IZ1YZAX59/3zDF6MWFULAMjwr40+p524uFpVF5GqUgXY3AWsNbxzwAv+wkuEMJ2+lntJJRfnSUOQpTFn5TNVxetqpfIEcaK5JwZjYrbAiVZ6FQnzDv+Kev08f/vORMbTCmAL4NiVeAOEsbLjJ8ykiMvWr5VH3bnG0XrtMKM4kwuNRDgNRUexi3qnnF9RC5QcgOAl6+Yw7yFn/QNRy/8ybf4rrBfHZ6z94Fvkvm2vFX9zJ1vDrvqlXhejnBsSf4anozzKFMr7+B9jqCXEyRflsBQSmRmVsKIyFV2g3+I7ZASF5uWn/Z37Ct0l6pLmsTCtU+Eh142wBCP3Vi8FNJ0XAfn17aLSPiN+g8pnHHPUb0lW3JJDM7+my6INvlh2LlSYjdsogds23bpm5G2cK0ZcuwY3CUhpXwIg+HGhZhTroq15M/PuCjhVd5GHvTnha1rSkV1znWi+NNgJ4yhdzDFULWhLYAstdaRf96/PPDpIpqOZd1f9SfujEqaWPTL/YCawFY1tbxxJTuZW9FlkB6KRKcy210BPZeaaNmO/tb6QeTRucyBonb+YGutVySV0xvPZGVMQqwBWO5WpGElOg9g1bPcvBxKXsrWqL1hrhrkWXmoKD3USTG/VAlv5ua6u7q8Vw/nMFrQlKaqqX300jBMnxYDwfYGsGYt9EabgWxxjl+6kt+TAYeFFA3cUAjbCkg7/LfA4r5GYGLGwAQeiVzsY/czj8um/PlOtCqB0jP2j7/swEtafJ3k9tRlWSV1Ykxzzy2FFfeYwyT2wFUYrLvhZDF/jPTU5u8gh2Jdne7A3p5sqYSPnABcuBApuUi71ErudEvBpJQmgfH4eeXy687bI3QRQk2jVqphlNA9N0PSigmrInSrGrsmSIKyobx7eDWuMxo2KzC8dK8RjjFm9svQB8N5EOMGdN8fQn/9Hti5t2waDBp2fmzXALm0l2VYSrFLW+k/876Sq6+pLji1jJG8vOpl5TWPB5xJ8edXA5z18SMPQVkMi8F/NniGTL6MaSYtX0OwOInPZoSpup4Map/eHx+x/e6i4sUy50NDUH10DAPf/PgpKjm6Rq6D/xsfbwgkOHQSNabm1wS8I96xYcxRn51CtRC2Zk23LwrpnmJBlY5w8QvHBY3ZzVnhhuFJGT6ZEsMssB+5bVXdfmcoQIXsXOgzGMr/S8isNfS3m8fqV6uUhDtBBiFNI+HfnUn9C0/R+WShenv9MI8biDX4Sc1jzLWmy3L0mxcwaT67PLoJG8Bl3rqe2XYNa5TdBdbua7Clsh1Xkz5NPtfDeJzNYscLlxW7OUovICYhwaaHVutVzRdQooOBAH30aqK8bz6QBUGJPyoWjFwHa9WxrDNzg9aVOx8RBtcKrNYs532PK11PB/XO9oVg3RwtgQ61ftL4ks+ffqEPMJZFqRdc1JyNTSi/VKSLl2SudNodPQgkpqzmdaV4bxT1kszyPD0jwAejbwKWljCwVjAvaYagt3UYxJH2Q0oRwr38BuRuWgnGFuFwSYuuKaFzJDzEqmwYa4r6BnXUwUrg6B34IDKLHVB3ZG/VIcn3GrRDe9JXXNeLUU2bNqcewHjG0IkiGOBhLx/LwPCGuCWbjPQIrpolOwmwCJlcI5I6EGDeNF859IQClqjJaq2Wn9sVRH57AHgvKUJPE7plu6AESuAOD/AXiwIU/gwVLnAPnlE8tIY/3ipF+seX4+C2FsITEZhumt0pRY8lbu8IsTU832gf30n/cOqj1Qxd3P3/h3btU0qM1pNLiIVC7eF2XDQe+7W6KV3vvzwiQ49aUBpKAuws/gX6hOCGDsWbOoKhjPGkVLLAXy7A7G8O1bnqMS7fBKBe/PEZjdPfAgjWClmHhWZV+y0ympDZBb7WGFiKTj+lUDvwQkgutWU1DPd8yNmmcZVe4X+ovWWkSjNdjquziZmAr/mXlqfJzPbvCpyj/3gfm4rWg5CjrF6u8OeF4FG3u7wUtJghUoyrjGEGmXtJehi8acV8BrKaflg7bX9x51wvb7XfvC/dEcxT+KUtSsaU2W5h2ilHmPribBMefF4GaJDM9lg8MDtkbc6Owz36dSky35s63m9xERHCHKSeqOjWgF/SuHBfnI5JURh+FgaTSRs/8F1S0MBcBzxalG+tldSUY4GgYsPIgFM9jam0PM8Va59ACTnBWWhQROve/RLbv9fLqw0plzmD2HEmQhj//LDoxYJ9qPP14bprvXOeQklVNfoibK/QkhHUOFpzhOPgJW7fLwK9hlwcRq6srwVXTCvzn1h36hzmBXk8EwvH7XzST+1f7zxNXA/H3fK8p+xwvbvFPzObpZwxESSbzAuQ8X2aeZwCN2G/JF0GBJJVNy7Uc4jIoXepl3VicEUG5YWsj2ncR6gyQ57v0a+93JvDOKSQxFAxqFfQQeaBvcYzutI0RHXmoUzDsj/7A/daB4Uo2HZx6sK0KPrE1bvlTDt5B8MlbNxbJRjYhvBn/VisaaJPhYofvWQ6NdNQjYq9UWoKFteI3X+hXb1E/5ZszBHTvk0i8RD+F0ml3JajP32gX6R2CWOwaqTKSlCdMSIBo3xLmRhPP2a2Lm35zGp03nLLxqlruE0GTjQXeCMTRzU1wOgSq8HCE9ZCEwDOrGi6kHrn8ee7FUNojnka463ElAQfWbyxBHubNnBCFh5LTBRq7vK0M5cQChARpzjgfaFxHYXj4jCsG83WrOve9eRsE7ySpVcc3pqdgW8I5SjJsDoaRUNNjnzEc52FS3g6tJVQEvoMPCSYP9OS5I2i13oI6zv4yzo4wANs4kputRte3PDAw0Om6acDX46ai2ns49ytb0BR5aGVFjKbcjTv15XseRCYzb8cw8e7h+7r9gv3LwNoDF6urhizHWczRMaFmoKc3xYkeh8of2UEbvquwP1qMxAbqN69hEI5TqmOepA4qMa5WhaUouyeLD5cfYH3iOARLJj2BTkK3IJtRaKIIkKpOsk0ZRPsv1VWM1mxAhMSzc1G/XjlKiFyYrok9XTFpngDbP7XPk63qfXJnR2W4cBPS/TuCy9h6UBwWCN60KvZrw5sNniojh4H5z9elNTeqorV3zv0Qob0fFDLIHbEpNGF5h9lqcpU4+MKu5rpG+qfUaJ3eooCwg/2nJXZheqlogWYgZSoqCEb5lUq5Akjc3NSFBBoK29KO+nlfuBzHjoTXSWIMy2ifAyvah5Yfkduu+UIhzYrfbMTyIgH3e8uIvWyx3yWF/T2PYHQdvx2BVPCKMYw4ARu7MhMGFAuv4C06+S0mL1jjOv2EI7/8TksxWpY4fcUG206X7n11icIBZvrwACdopCELDHQ3uIhDN64AeyUwczFMaEzD6WRmwe24YC46hboRbowyljXVY3qm2MQaiob+XBWHjfbYTMHG6Y4c1atZDUqHkWWN+8qnh1JJrAae7Qb+wo33IMGT7Mo0+lEUJJw5F4n/oNZdkBPWM3wgD0DlQodb8Rd/zyqEuP1n1XPXcROep5hkyiIwgIN1dA6+RiDlplYI8u8/OMk2ebirRrEoqIRqwIRGBqSDMQ3ooCBwGKvGeMFmIWS6o3EhbLGzXtebRitXiMwGRTznlIqZDrcLJBrBs/sCCFB87RMbr68gtEpdEmZDBHbN+8EFFyXWU12Blgleprbr7gLxNoOS9wOp9fVORevy9xvs3GN0Px+IO7oguxZeSI/f/NETfB79pKSzXVYyw/yFVwAnKNwd4bnq01LyImImkuO9wirbB83SncjEeJxONztFnFKI4DMA5ErtZLTwKCto3VIC18WX7bbyann9Fatntt60x+W4WQryLLvurhoj3QbFFNZBjEYo4hh/Q6ojjXu/b9OKGN4zi2pUxgdQnd1ulwACQ6inWpFJ4efG6BiWyvhxw38rNZPaUoR5xhTLgJCDB9kvsY+AlLvmfnEIG74lSWz2ZaSbyqDkKo1f3jkYjYK6pa6AR5Y04BO5s0J1ChmnD8zJ3vtvUdgWyn3bw1uYRz6DEYIHH2pXMwkXTrAbkPrn1rKnK7/AETRhsABk9THnYG6cdlyxBvQdZtKYpddkFYciFjgnBphZXdnGTrKZ5+jkNYte5lnBGt9B+g2Kt/pquwT0L667ZrUB2vvCa+f3rdyyPUrGNBFqvi2/iaFaoKRQBBiWqw5AlFczEpBNKxS8kjsLifxh5ozKwIRFFVNNBTpHHMqQJmmAJQmAqa7JHU4+lfwAfG2epP0EoKJd+7JPuluxSwEA3EtYLW863EVOy5IBWNUVT6kthck8VFGc2VjQzjxBhSwvr0P7bWktV11N6maiRTycQkaJgworGByBZWCrXEaudj9A0VgAZ4lddZPA7x5g37C0e9XYKNpztuKjxJdbTWULtXtRl+rANyjl5CD5cPKQqYEeWOORaq5c8JSoijZk1hD71sHJjQqkcJx4NK9eX5aUzoJDNMxQ9aCnXfJba8WaJ7AjdTYlL5jUytWp/JrLgxZvgSkwLCICtfqRSwzk+2sd1T2H76EQW7YFuPAbpF5rq5wuVbeemyo6HJ9oaeb0pRpvpeMz0fdUN4vMN7JmWf6ri0bdcYPuXt3sFB6Nvd2yh7qR75qKG7dYZG8n0q/naEprgLsRClxi5oUN4G6Gs4d1YTJhVo6gyqDNfEPConyFe0p7FnbPxP+iwgS5b9gQXLT+zhzr4QIWeLyPfHjHL+eVG3gDnPtcLgcQ20qifAFiX6seKrREde5gn9CjoroyRv5kR90K3hh2jEsezSyug6QLahFRfj//CnAJVxwQHAudfE0wnif5P8WnZ2JcB5Q6VAi12bjsSwurbapS/bBNwNzLu22z4h6pyOqjE0spDxW/sKwggy/9Pm9S7wzHY4ekSU4JGGQsRplaAk+a3JZGkSw5cgtNtMC7z2euW9zjPtMskRiuZVrgJUuw6zPNhlY+bO65LzBJTD2vFnub0LQQaC07MG+ukSJbTanfStMk+6zogRffg31seYDya+EOtCK8T+IvbRD0VoWEIkoPdyBVwkj1nnLORwqkKIzmRC1GMQg637PK3CKCijuu4ZyEeSSGadw7ohhLWvXu1zoVl8ypCWJAKYa2oCSK5g0Gm+/qFeaDYYSmv+hmF7CkFmocqeemzIF+GhC9wV04P2d15gZeDoeDuDl/gqS3RcFye4mLrQvh+mracvotmxKDsjnjclSXuvlxZAPdnXNzy1z2u6l1701/dsJJfwEO0c1Caon7hIWmhvfZQVw9kXgol1QJXMbsUnaElxfI3q3azHLEW4oIFfvziduikDrqoyHAZ8C1ul9RDisHhc0cxVQGJmS8BBEg7IefW+P1eudg+1skR4enrlg25oWk1Q/FEZKSf/ozX7klwvTdWGmSRUT4fxiPBuwZc6nh30rN+qUNN2iqcv4ZWubrtKyoJgsPr4b+qf/pMQWypaZYYocanz3bRcxzZQbb1zRcmYX1uLKYzKpUWWUukXS+KXFnCRZNqPi5Lfb5TVNsoAiTJ+RDBnskinAMgfh7pQEv/dYO7+HGXNF01Gen8Phpl7oMfjqIX2ljP1hHlrI4WQrkymsx4p5JbJVM6l2mf6cFcfzNGdopWOgyU71CpEUvJ0ZjtlnaTPHeB8Qk1373K7iqHXeE+ClZ+8epxqKUXj7GAbeS2dew+NA7TJx2kgEsBDxU1wXRgJjfUWThYtGCVBs0Lv+5Wk9Vz4sJ1NySmHAfwK/pFT05B8XIfMQYFU0zqc5TBZmCmPAzc5qbo3zZ76+zR/6LKlhYFC3RhsBeL8hisjHp8BC0IV17nQfaaX0Qk7JaF3OI44JUWtqdU2J81/JLmcr7ZVHCOyUqFSZuw+QVH1I3LaV8rFostcTbcPuR/lrONdFat7U8ogA+Eccn3gSl21MXMhwxu7QP6U8ye8HtXCaQMHzrwfFMPQItrlzHgNzPaTr0l8RVN/N1ZqZAjUaWpZnCJdoq0fncwOSy2vEOOnCIj2BxMX4wQi0BZeyK0E08Mh9WeM849XyX7PxbLsXAZhANSSGRP7Xwol0VF5Ux4VigfTaD1yqg8Sd/AmWBRr7Tf3tsIJMe4YF/Cc+vcrfdLlFcEaeiow7FuRWuULtVw81J3mk+DW+d1oCagtOYc6xFoC/odBz3uUvBdm1JYpgSlckuSL/fSBOs7a+i+L6mx1Lb9itNPX14vZcRcKRVfQrq+ixwTGEQutqSupgMyEt4iIw7h0c3otdXrNoy73qp/zKqywQYd+fyCCfc6Uu65M7M0v4ju44hyip/jAOp0C966RNU7eQ+/15TqZMR0sBVLHbumbtiVtniQDINtqD96PCmDHRK7tJKRjxEh3d+U6en+fvoAQ2g2JiugEdxKwmszjuuecN7+vKw6joZ1NeSqtZgEZX3CZ9ACFoZUsAN6KP5P0sayt95HcbNxf4UBQ8dhRxzmS+QzGtKgYobK99K+YWcp175kKhh0DLW5GMtcnJ7MixYogMPXNqUkn/XfeUFh3KvtGB1gUxwqggevlK89yUmITPPLfyAEBgD6CA2kSAZEayW+wnQwfiG9R+UqbeVF1QzsHF0kx2HKeVEmSoUn6Gnjvj9ODVFvWvnHdKxwrK0MqIZpDS+HalnqgCsddGgv1zBjPg0URMe+a61K/JUQQKu/8BwUF2tQfPf7d3CDM6lB1a19GHcr0XYE2bW2NqfYWKbCKBrjk5N/uR/wLme817BviyAAXPzY0Jo4RSAoCxyp/hKYNFB/WFcHYPWALsX44pv8iKOQVYlbyzr/nqWYYkNzuFHpV7PevCOJ/SyZyEQzAsZPKgDVcbPR6Oq/r0Axi0lv2PkDaWOTKDHHN4qOiLB7QFqknfgZmHPvvb2llQta4SelVOeoPXgKSWJH30rqMEya4exMpKknUhr6sHP7FJGEvZL7vJY5eFPOcv11RAWk1raANRFzxr5GlPeT/ccx6eGk+49s0OsSjmx/pT+vBlR+AC2imWdd2ONm2rFtfwwBEw8CkcTJlfjidCjPJvvMkq3RpZbMUCneapbCC1EiCmHQPrmaSnf58Mq8rUHrRU2wFKjQZk//NROJHD5AQavZtBsQd4exdldzEDS8m6BmuDSxC8iz1u3/9e+ScFeEvcnDT6basSqJ2l6wRZhFjHw1cJsF6taokMGSgtYkuEhXHBbNb94Dl9QkNRjoRYfYSoLg5XC+pSo3KclQtjk0RICjnevuJWM4O3oFPncB7CYLjfi3uiZnnR6bS1oVisztGUfaNTI6dZSq5tX53Srk8NZ4TfpoOIZOtq9WZEmwOaZx4SpG2WwlurpWNZmqOgRIzW2ko9O1GZjlxmOeQHeB2SI/pHDPWeGlbokYej5uoDCupbVzl1AVI2oBzS7UnX8nVkUjVLRwfsn3I/kITtWYeN1cAQT8I6aj3aAnLAp8ZQo6+0loKwvLUnrl0duqEgxAcJxAq1JOjdYG2mY+L9sXFwSDvImBVLB/S+eSNeh1KjqBL8rH5cXvRn+56YrtDcOUdwtj8x62bXIhGeMngEjvorMt2B8rj8dBcxIu5M5QQhcw9vouat8iUAo7RxIjUWKzbpnsGTInUstBCxIZTuahyY49xBz/Yd6xVht2Tt4Dj7WI01dJZcJcI56GuAs31WjD460YhOOloN1mBoNcni+VQV9Y1XbPsLx329jE3ccknUogYFt6002hj1UFSjOXsAwRuVG1MzWD4HyTusOrWH7cxB1HbFyuaobb0oL9Z988fU+Dvl6N1QfCyjJPqik3JCCYq1Y3ylaOMuG/LhepGgpP2WiCAiAWmdL8xU8uWLxQrkZxQYwLCXRjoQyjPzXVISMPtRSiz5Ng==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=b94hX14NMWluUQ9a73g0LYFvtKhY52TK8cbDkYB_F2GuPre4tdh-ebiiI4xuhXnRu6Q5dQjaQA4oN3PEeL0GrtKEyEY1&amp;t=638942408819057530" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=YwOa_0w_u3oCLFqmIIOf-XEz4GWZ1DuyQIpxIA4LVkywj39sZSps12NbK5wNl5XN9JF3m7d-ey7BFDgj6i0380qRQ5IMWCL54sYNVU1IjMmiOWpp0&amp;t=ffffffffecf8d3f2" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=_shmykYI80CxCNR43Ii1nLy9PBGhuSe6SPp3CEYu0wDEuLqDAuIcsXVNhTIgQn0iyiwPorMflXuK31FftDX9GnB0m366MCEoOmY-eKQ3YAO9xRL0gIigzgRbtbVOgSQkJbJpFg2&amp;t=ffffffffecf8d3f2" type="text/javascript"></script>
+<script src="/PressReleasePage.aspx?_TSM_HiddenField_=sc_HiddenField&amp;_TSM_CombinedScripts_=%3b%3bAjaxControlToolkit%2c+Version%3d3.5.7.123%2c+Culture%3dneutral%2c+PublicKeyToken%3d28f01b0e84b6d53e%3aen-US%3a5a4df314-b4a2-4da2-a207-9284f1b1e96c%3ade1feab2%3af2c8e708%3a720a52bf%3af9cec9bc%3a589eaa30%3aa67c2700%3aab09e3fe%3a87104b7c%3a8613aea7%3a3202a5a2%3abe6fb298" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="59B53027" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="0gcS4G4g2Y4Vq5tW5NFXIB9bcQFFkrQTjA3e7H0naqvF5pGt/xhdMt7MoNzUWERfO+Jb4zgXbOfRcVlJdHWZP5s2j7+xLexBPNeQO9XqyjGDGK38+DGhNdbgBU4QvuNs2QPy+v3YVYMprSwqL4hb1dmX8y8qds43unxkDa8AUkQSWo5wiOnBbv6RG1pchme6VhBR03vu5gXvfJI5gZTTxTvB9XWEVOoge3gKcAI+biSBiuUpCtrV6TFn2UdWqcPFRmO9Cl/uekAoqY5rAJWnFKJqvatR6/3Rs1S8FlHASrZtZQI0" />
+</div>
+                              
+            <div id="templateCss"></div>
+            <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('sc', 'form1', ['tupdate12','update12'], [], [], 90, '');
+//]]>
+</script>
+
+            <input type="hidden" name="hfGridHtml" id="hfGridHtml" />
+            <div class="container" style='margin-bottom: 50px;'>
+                  <div id="accessories">
+
+                        
+                        <div class="pull-right" style="display: flex">
+                              <div id="voll"></div>
+                              <div id="vollDT"></div>
+                              
+                              
+<div class="print-icons">
+<input type="image" name="Print1$print" id="Print1_print" aria-label="Print" src="images/printer_icon.png" alt="print page button" style="padding: 5px 10px 5px 10px;" />
+</div>
+                        </div>
+                  </div>
+                  <input type="hidden" name="hydpermid" id="hydpermid" value="2258702" />
+                  
+
+
+
+                  <div class="innner-page-main-about-us-content-right-part">
+
+                        <div id="MinistryName" class="MinistryNameSubhead text-center">
+                              Ministry of Labour & Employment
+                        </div>
+                        
+                        <div id="lg_g"><div class='log_oo'>  <img src='https://static.pib.gov.in/WriteReadData/specificdocs/photo/2026/sep/ph_9768_20260902_10000501.png' alt='azadi ka amrit mahotsav' /> </div></div>
+
+
+
+
+
+                        <div class="text-center event-heading-background">
+                              
+                              <h2 id="Titleh2">
+                                    Launch of Free Annual Health Check-up Programme for Insured Persons Above 40 Years of Age by ESIC 
+                              </h2>
+                              <h3 id="Subtitleh3">
+                                    <span id="ltrSubtitle"></span>
+                              </h3>
+                        </div>
+
+                        <div id="PrDateTime" class="ReleaseDateSubHeaddateTime text-center pt20">
+                              Posted On:
+                07 MAY 2026 3:49PM by PIB Ahmedabad
+                        </div>
+                        
+                        <div class='pt20'>
+                        </div>
+                        <input type="hidden" name="hydphotoUrl" id="hydphotoUrl" />
+                        
+                        <p style="text-align:justify"><span style="font-size:11.0pt">The four Labour Codes notified in November 2025 represent a significant reform in India&#39;s labour administration framework. </span>Under these Labour Codes, the provision of free annual health check-ups for workers above 40 years of age is a major initiative, emphasizing that a healthy workforce is the foundation of a productive nation and that preventive healthcare services are both a right and a necessity for every worker.</p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">The nationwide launch of this programme was inaugurated on 07 May 2026 (Thursday) at ESIC Hospital-cum-ODC, Basaidarapur, New Delhi by Hon&#39;ble Union Minister Shri Mansukh L. Mandaviya, Ministry of Labour &amp; Employment, Government of India. </span>Simultaneously, the programme was launched at 12 different locations across the country.</p>
+
+<p style="text-align:center"><img alt="" src="https://static.pib.gov.in/WriteReadData/userfiles/image/2(4)OTRB.jpeg" style="height:350px; width:500px" /></p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">In line with the above initiative, Employees&#39; State Insurance Corporation (ESIC), Regional Office, Ahmedabad launched the programme on 07 May 2026 (Thursday) at 10:00 AM at ESIC Model Hospital, Bapunagar, Ahmedabad. </span>The programme was inaugurated by the Chief Guest Shri Kunvarji Bavaliya, Hon&#39;ble Minister (Labour, Skill Development &amp; Employment), Government of Gujarat and Shri Dineshsinh Kushwah, Hon&#39;ble MLA, Bapunagar through ceremonial lamp lighting.</p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">On this occasion, Shri K.D. </span>Lakhani, Labour Commissioner, Dr. Teresa E. Bilung, DMC, ESIC Headquarters, Dr. Pandurang Narhare, Dean, Dr. Ravi G. S., Medical Superintendent, Dr. Rajshree Agrawal, DMS, ESIS, Shri Hemant Kumar Pandey, Regional Director, Gujarat and other dignitaries were present.</p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">While addressing the gathering, Shri Kunvarji Bavaliya, Hon&#39;ble Minister appreciated the initiative and stated that the launch of the Free Annual Health Check-up Programme for insured persons above 40 years of age by ESIC is a highly significant and inspiring initiative. </span>He stated that the programme is directly linked to the health, safety and prosperity of the working class and reinforces the idea that healthy workers are the foundation of a capable and productive nation.</p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">He further stated that the programme would not remain limited to a formal event only, but would continue throughout the year so that maximum insured persons could avail the benefit and become more aware about their health. </span>He appreciated ESIC for continuously working not only towards providing medical facilities but also towards improving the quality of life of workers.</p>
+
+<p style="text-align:center"><img alt="" src="https://static.pib.gov.in/WriteReadData/userfiles/image/4(1)6GC0.jpeg" style="height:350px; width:500px" /></p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">Shri Dineshsinh Kushwah, Hon&#39;ble MLA, Bapunagar in his address stated that the Free Annual Health Check-up Programme for insured persons above 40 years of age launched at ESIC Hospital, Bapunagar is a highly commendable initiative. </span>In today&#39;s changing lifestyle and working conditions, the risk of non-communicable diseases such as diabetes, hypertension and heart diseases increases after the age of 40 years. If these diseases are identified at an early stage, they can not only be controlled but serious complications can also be prevented. He further stated that from this perspective, the initiative strengthens not only curative but also preventive healthcare services. It reflects a move towards a holistic healthcare model focusing on the overall health and well-being of individuals.</p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">Shri Hemant Kumar Pandey, Regional Director informed the insured persons and employers about the benefits of the notified Labour Codes and elaborated on various facilities and benefits provided by ESIC. </span>He also informed that the Free Annual Health Check-up Programme for insured persons above 40 years of age would continue throughout the year in all ESIC and ESIS hospitals across Gujarat.</p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">During the programme, health check-ups of insured persons were conducted and they were made aware about the importance of regular health screening and adopting a healthy lifestyle. </span>The Employees&#39; State Insurance Corporation (ESIC) will continue this programme throughout the year to ensure that maximum insured persons can avail the benefits of preventive healthcare services.</p>
+
+
+                        
+                        <div id="reel_pic">
+                        </div>
+
+
+
+                        
+                        <br />
+                        <span id="ReleaseId">(Release ID: 2258702)</span>
+                        <span id="lblViews">Visitor Counter : 1050</span>
+                        <div>
+                              
+                        </div>
+                        
+
+                        <span id="lblRefPhoto"></span>
+
+                        <div class="BackgroundRelease">
+                              
+                        </div>
+                        <div>
+                              
+                        </div>
+                        <div class="ReleaseLang">Read this release in: 
+                        
+                                    
+                                    <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2258705' target="_blank">
+                                          Gujarati </a>
+                              
+                        </div>
+
+                        <div class="RelTag">
+                              <ul>
+                                    
+                              </ul>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div id="RelLink" class="RelLink">
+                              <ul>
+                                    
+                                    
+                              </ul>
+                        </div>
+                        <center>
+                              
+                        </center>
+                  </div>
+
+                  <div id="update12">
+	
+                              
+                              <input type="hidden" name="Hidden" id="Hidden" />
+                              <div id="P_CategoryManagement" class="ModalWindow" style="border-width:0px;height:60%;width:60%;overflow:auto;display: none">
+		
+                                    <div>
+                                          <input type="image" name="btnClose" id="btnClose" src="images/close_flat_icon.png" />
+                                    </div>
+                                    <div id="description">
+                                    </div>
+                                    <div class="text-center">
+                                          <h2>
+                                                
+                                                <br>
+                                                
+                                          </h2>
+                                    </div>
+                                    <br />
+                                    <div class="clear">
+                                    </div>
+                                    
+                              
+	</div>
+                        
+</div>
+            </div>
+            
+            <div id="PdfDiv" style="display: none;">
+                  <table width="100%">
+                        <tr>
+                              <td style="font-weight: 200; text-align: center">
+                                    Ministry of Labour & Employment
+                                    <div style="height: 30px; width: 100%;">
+                                    </div>
+                                    <div style="font-weight: 200; text-align: center; font-size: 30px;">
+                                          Launch of Free Annual Health Check-up Programme for Insured Persons Above 40 Years of Age by ESIC 
+                                    </div>
+                                    <div style="height: 30px; width: 100%;">
+                                    </div>
+                                    <div style="font-weight: 200; text-align: center; font-size: 30px;">
+                                          
+                                    </div>
+                                    <div style="height: 30px; width: 100%;">
+                                    </div>
+                                    <div style="text-align: center; font-size: 14px;">
+                                          Posted On:
+                        07 MAY 2026 3:49PM by PIB Ahmedabad
+                                    </div>
+                                    <div style="height: 30px; width: 100%;">
+                                    </div>
+                                    <div style="font-weight: 200; text-align: left; font-size: 16px;">
+                                          <p style="text-align:justify"><span style="font-size:11.0pt">The four Labour Codes notified in November 2025 represent a significant reform in India&#39;s labour administration framework. </span>Under these Labour Codes, the provision of free annual health check-ups for workers above 40 years of age is a major initiative, emphasizing that a healthy workforce is the foundation of a productive nation and that preventive healthcare services are both a right and a necessity for every worker.</p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">The nationwide launch of this programme was inaugurated on 07 May 2026 (Thursday) at ESIC Hospital-cum-ODC, Basaidarapur, New Delhi by Hon&#39;ble Union Minister Shri Mansukh L. Mandaviya, Ministry of Labour &amp; Employment, Government of India. </span>Simultaneously, the programme was launched at 12 different locations across the country.</p>
+
+<p style="text-align:center"><img alt="" src="https://static.pib.gov.in/WriteReadData/userfiles/image/2(4)OTRB.jpeg" style="height:350px; width:500px" /></p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">In line with the above initiative, Employees&#39; State Insurance Corporation (ESIC), Regional Office, Ahmedabad launched the programme on 07 May 2026 (Thursday) at 10:00 AM at ESIC Model Hospital, Bapunagar, Ahmedabad. </span>The programme was inaugurated by the Chief Guest Shri Kunvarji Bavaliya, Hon&#39;ble Minister (Labour, Skill Development &amp; Employment), Government of Gujarat and Shri Dineshsinh Kushwah, Hon&#39;ble MLA, Bapunagar through ceremonial lamp lighting.</p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">On this occasion, Shri K.D. </span>Lakhani, Labour Commissioner, Dr. Teresa E. Bilung, DMC, ESIC Headquarters, Dr. Pandurang Narhare, Dean, Dr. Ravi G. S., Medical Superintendent, Dr. Rajshree Agrawal, DMS, ESIS, Shri Hemant Kumar Pandey, Regional Director, Gujarat and other dignitaries were present.</p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">While addressing the gathering, Shri Kunvarji Bavaliya, Hon&#39;ble Minister appreciated the initiative and stated that the launch of the Free Annual Health Check-up Programme for insured persons above 40 years of age by ESIC is a highly significant and inspiring initiative. </span>He stated that the programme is directly linked to the health, safety and prosperity of the working class and reinforces the idea that healthy workers are the foundation of a capable and productive nation.</p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">He further stated that the programme would not remain limited to a formal event only, but would continue throughout the year so that maximum insured persons could avail the benefit and become more aware about their health. </span>He appreciated ESIC for continuously working not only towards providing medical facilities but also towards improving the quality of life of workers.</p>
+
+<p style="text-align:center"><img alt="" src="https://static.pib.gov.in/WriteReadData/userfiles/image/4(1)6GC0.jpeg" style="height:350px; width:500px" /></p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">Shri Dineshsinh Kushwah, Hon&#39;ble MLA, Bapunagar in his address stated that the Free Annual Health Check-up Programme for insured persons above 40 years of age launched at ESIC Hospital, Bapunagar is a highly commendable initiative. </span>In today&#39;s changing lifestyle and working conditions, the risk of non-communicable diseases such as diabetes, hypertension and heart diseases increases after the age of 40 years. If these diseases are identified at an early stage, they can not only be controlled but serious complications can also be prevented. He further stated that from this perspective, the initiative strengthens not only curative but also preventive healthcare services. It reflects a move towards a holistic healthcare model focusing on the overall health and well-being of individuals.</p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">Shri Hemant Kumar Pandey, Regional Director informed the insured persons and employers about the benefits of the notified Labour Codes and elaborated on various facilities and benefits provided by ESIC. </span>He also informed that the Free Annual Health Check-up Programme for insured persons above 40 years of age would continue throughout the year in all ESIC and ESIS hospitals across Gujarat.</p>
+
+<p style="text-align:justify"><span style="font-size:11.0pt">During the programme, health check-ups of insured persons were conducted and they were made aware about the importance of regular health screening and adopting a healthy lifestyle. </span>The Employees&#39; State Insurance Corporation (ESIC) will continue this programme throughout the year to ensure that maximum insured persons can avail the benefits of preventive healthcare services.</p>
+
+                                    </div>
+                                    <div style="height: 30px; width: 100%;">
+                                    </div>
+                                    <div style="height: 30px; width: 100%;">
+                                    </div>
+                                    <div style="font-weight: 100; text-align: left; font-size: 16px;">
+                                          (Release ID: 2258702)
+                                    </div>
+                                    <div style="height: 30px; width: 100%;">
+                                    </div>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td style="font-weight: 200; text-align: center; font-size: 24px;"></td>
+                        </tr>
+                  </table>
+            </div>
+            <div class="clearfix">
+            </div>
+
+            
+
+            <div class="section1">
+                  <div id="frst_t">
+                        <div id="arr_rm"><div class='sticky-social_mb'><ul class='social_mb'><a href='http://www.facebook.com/share.php?u=https://pib.gov.in/PressReleasePage.aspx?PRID=2258702' target='_blank'><li class='fb_b'   ><img  src='https://static.pib.gov.in/WriteReadData/userfiles/socialmedianew/facebook.jpg' alt='Share on facebook'  width='40' /></li></a><a href='https://twitter.com/intent/tweet?url=https://pib.gov.in/PressReleasePage.aspx?PRID=2258702&text=Launch of Free Annual Health Check-up Programme for Insured Persons Above 40 Years of Age by ESIC ' target='_blank'><li class='twitter_r'  ><img  src='https://static.pib.gov.in/WriteReadData/specificdocs/photo/2023/aug/ph2023818240601.jpg' alt='Share on twitter' width='40' /> </li></a><a href='https://api.whatsapp.com/send?text=https://pib.gov.in/PressReleasePage.aspx?PRID=2258702' target='_blank'><li class='whatsapp_r'  ><img  src='https://static.pib.gov.in/WriteReadData/userfiles/socialmedianew/whatsapp1.png' alt='Share on whatsapp' width='40' /></li></a><a href='https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Launch of Free Annual Health Check-up Programme for Insured Persons Above 40 Years of Age by ESIC &body=https://pib.gov.in/PressReleasePage.aspx?PRID=2258702&ui=2&tf=1&pli=1' title='Share by Email' target='_blank'><li class='fa-envelope_r' ><img  src='https://static.pib.gov.in/WriteReadData/userfiles/socialmedianew/email1.png' alt='Share on email'  width='40' /></li></a><a href='https://www.linkedin.com/shareArticle?mini=true&url=https://pib.gov.in/PressReleasePage.aspx?PRID=2258702&title=Launch of Free Annual Health Check-up Programme for Insured Persons Above 40 Years of Age by ESIC &summary=My%20favorite%20developer%20program&source=LinkedIn' target='_blank'><li class='fa-linkedin_r'  ><img  src='https://static.pib.gov.in/WriteReadData/userfiles/socialmedianew/linkedin.png' alt='Share on linkedin' width='40' /></li></a></ul></div></div>
+                  </div>
+                  <div id="second_t">
+                        <div id="sndr_rm"><div class='sticky-social'><ul class='social'><a href='http://www.facebook.com/share.php?u=https://pib.gov.in/PressReleasePage.aspx?PRID=2258702' target='_blank'><li class='fb_b'   ><img  src='https://static.pib.gov.in/WriteReadData/userfiles/socialmedianew/facebook.jpg' alt='Share on facebook'  width='35' /></li></a><a href='https://twitter.com/intent/tweet?url=https://pib.gov.in/PressReleasePage.aspx?PRID=2258702&text=Launch of Free Annual Health Check-up Programme for Insured Persons Above 40 Years of Age by ESIC ' target='_blank'><li class='twitter_r'  ><img  src='https://static.pib.gov.in/WriteReadData/specificdocs/photo/2023/aug/ph2023818240601.jpg' alt='Share on twitter' width='35' /> </li></a><a href='https://api.whatsapp.com/send?text=https://pib.gov.in/PressReleasePage.aspx?PRID=2258702' target='_blank'><li class='whatsapp_r'  ><img  src='https://static.pib.gov.in/WriteReadData/userfiles/socialmedianew/whatsapp1.png' alt='Share on whatsapp' width='35' /></li></a><a href='https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Launch of Free Annual Health Check-up Programme for Insured Persons Above 40 Years of Age by ESIC &body=https://pib.gov.in/PressReleasePage.aspx?PRID=2258702&ui=2&tf=1&pli=1' title='Share by Email' target='_blank'><li class='fa-envelope_r' ><img  src='https://static.pib.gov.in/WriteReadData/userfiles/socialmedianew/email1.png' alt='Share on email'  width='35' /></li></a><a href='https://www.linkedin.com/shareArticle?mini=true&url=https://pib.gov.in/PressReleasePage.aspx?PRID=2258702&title=Launch of Free Annual Health Check-up Programme for Insured Persons Above 40 Years of Age by ESIC &summary=My%20favorite%20developer%20program&source=LinkedIn' target='_blank'><li class='fa-linkedin_r'  ><img  src='https://static.pib.gov.in/WriteReadData/userfiles/socialmedianew/linkedin.png' alt='Share on linkedin' width='35' /></li></a></ul></div></div>
+                  </div>
+            </div>
+            <input type="hidden" name="ltrTitlee" id="ltrTitlee" value="Launch of Free Annual Health Check-up Programme for Insured Persons Above 40 Years of Age by ESIC " />
+            <input type="hidden" name="ltrSubtitlee" id="ltrSubtitlee" />
+            <input type="hidden" name="ltrDescriptionn" id="ltrDescriptionn" value="&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-size:11.0pt&quot;>The four Labour Codes notified in November 2025 represent a significant reform in India&amp;#39;s labour administration framework. &lt;/span>Under these Labour Codes, the provision of free annual health check-ups for workers above 40 years of age is a major initiative, emphasizing that a healthy workforce is the foundation of a productive nation and that preventive healthcare services are both a right and a necessity for every worker.&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-size:11.0pt&quot;>The nationwide launch of this programme was inaugurated on 07 May 2026 (Thursday) at ESIC Hospital-cum-ODC, Basaidarapur, New Delhi by Hon&amp;#39;ble Union Minister Shri Mansukh L. Mandaviya, Ministry of Labour &amp;amp; Employment, Government of India. &lt;/span>Simultaneously, the programme was launched at 12 different locations across the country.&lt;/p>
+
+&lt;p style=&quot;text-align:center&quot;>&lt;img alt=&quot;&quot; src=&quot;https://static.pib.gov.in/WriteReadData/userfiles/image/2(4)OTRB.jpeg&quot; style=&quot;height:350px; width:500px&quot; />&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-size:11.0pt&quot;>In line with the above initiative, Employees&amp;#39; State Insurance Corporation (ESIC), Regional Office, Ahmedabad launched the programme on 07 May 2026 (Thursday) at 10:00 AM at ESIC Model Hospital, Bapunagar, Ahmedabad. &lt;/span>The programme was inaugurated by the Chief Guest Shri Kunvarji Bavaliya, Hon&amp;#39;ble Minister (Labour, Skill Development &amp;amp; Employment), Government of Gujarat and Shri Dineshsinh Kushwah, Hon&amp;#39;ble MLA, Bapunagar through ceremonial lamp lighting.&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-size:11.0pt&quot;>On this occasion, Shri K.D. &lt;/span>Lakhani, Labour Commissioner, Dr. Teresa E. Bilung, DMC, ESIC Headquarters, Dr. Pandurang Narhare, Dean, Dr. Ravi G. S., Medical Superintendent, Dr. Rajshree Agrawal, DMS, ESIS, Shri Hemant Kumar Pandey, Regional Director, Gujarat and other dignitaries were present.&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-size:11.0pt&quot;>While addressing the gathering, Shri Kunvarji Bavaliya, Hon&amp;#39;ble Minister appreciated the initiative and stated that the launch of the Free Annual Health Check-up Programme for insured persons above 40 years of age by ESIC is a highly significant and inspiring initiative. &lt;/span>He stated that the programme is directly linked to the health, safety and prosperity of the working class and reinforces the idea that healthy workers are the foundation of a capable and productive nation.&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-size:11.0pt&quot;>He further stated that the programme would not remain limited to a formal event only, but would continue throughout the year so that maximum insured persons could avail the benefit and become more aware about their health. &lt;/span>He appreciated ESIC for continuously working not only towards providing medical facilities but also towards improving the quality of life of workers.&lt;/p>
+
+&lt;p style=&quot;text-align:center&quot;>&lt;img alt=&quot;&quot; src=&quot;https://static.pib.gov.in/WriteReadData/userfiles/image/4(1)6GC0.jpeg&quot; style=&quot;height:350px; width:500px&quot; />&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-size:11.0pt&quot;>Shri Dineshsinh Kushwah, Hon&amp;#39;ble MLA, Bapunagar in his address stated that the Free Annual Health Check-up Programme for insured persons above 40 years of age launched at ESIC Hospital, Bapunagar is a highly commendable initiative. &lt;/span>In today&amp;#39;s changing lifestyle and working conditions, the risk of non-communicable diseases such as diabetes, hypertension and heart diseases increases after the age of 40 years. If these diseases are identified at an early stage, they can not only be controlled but serious complications can also be prevented. He further stated that from this perspective, the initiative strengthens not only curative but also preventive healthcare services. It reflects a move towards a holistic healthcare model focusing on the overall health and well-being of individuals.&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-size:11.0pt&quot;>Shri Hemant Kumar Pandey, Regional Director informed the insured persons and employers about the benefits of the notified Labour Codes and elaborated on various facilities and benefits provided by ESIC. &lt;/span>He also informed that the Free Annual Health Check-up Programme for insured persons above 40 years of age would continue throughout the year in all ESIC and ESIS hospitals across Gujarat.&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-size:11.0pt&quot;>During the programme, health check-ups of insured persons were conducted and they were made aware about the importance of regular health screening and adopting a healthy lifestyle. &lt;/span>The Employees&amp;#39; State Insurance Corporation (ESIC) will continue this programme throughout the year to ensure that maximum insured persons can avail the benefits of preventive healthcare services.&lt;/p>
+" />
+            <script type="text/javascript">
+                  var mPlayer = document.getElementById("background_music");
+                  var mPlayAction = document.getElementById("playbutton");
+
+                  var isPlaying = false;
+
+                  function playAudio() {
+                        mPlayer.play();
+                        isPlaying = true;
+                        document.getElementById('stopA').style.display = "block";
+                        document.getElementById('playA').style.display = "none";
+                  }
+
+                  function pauseAudio() {
+                        mPlayer.pause();
+                        isPlaying = false;
+                        document.getElementById('playA').style.display = "block";
+                        document.getElementById('stopA').style.display = "none";
+                  }
+                  //function HandleAudio() {
+                  //    if (isPlaying == true) {
+                  //        //Playing already Pause it
+                  //        pauseAudio();
+                  //    } else {
+                  //        //Play the music
+                  //        playAudio();
+                  //    }
+                  //}
+            </script>
+            <script type="text/javascript">
+                  var synth = window.speechSynthesis;
+
+            
+                  function CleanHtml(html) {
+
+                        html = html.replace(/<script[\s\S]*?<\/script>/gi, '');
+
+                        return html;
+                  }
+                  function stripHtml(html) {
+                        let tmp = document.createElement("DIV");
+                        tmp.innerHTML = CleanHtml(html);
+                        return tmp.textContent || tmp.innerText || "";
+                  }
+            </script>
+            <script type="text/javascript">
+                  $(document).ready(function () {
+                        //for responsive tables
+                        $("table").each(function () {
+                              if (!$(this).closest(".table-responsive").length) {
+                                    $(this).wrap("<div class='table-responsive'></div>");
+                              }
+                        });
+
+                        var width = $(window).width();
+                        if (width < 768) {
+
+                              // Extra Small Device
+                              document.getElementById('frst_t').style.display = "block";
+                              document.getElementById('second_t').style.display = "none";
+
+                        } else if (width < 991) {
+                              document.getElementById('frst_t').style.display = "block";
+                              document.getElementById('second_t').style.display = "none";
+                              // Small Device
+
+                        } else if (width < 1199) {
+                              document.getElementById('frst_t').style.display = "none";
+                              document.getElementById('second_t').style.display = "block";
+                              // Medium Device
+
+                        } else {
+                              document.getElementById('frst_t').style.display = "none";
+                              document.getElementById('second_t').style.display = "block";
+                              // Large Device
+
+                        }
+                  });
+            </script>
+            <script type="text/javascript">
+                  $(document).ready(function () {
+                        var width = $(window).width();
+                        if (width < 768) {
+
+                              // Extra Small Device
+                              document.getElementById('frst_t').style.display = "block";
+                              document.getElementById('second_t').style.display = "none";
+
+                        } else if (width < 991) {
+                              document.getElementById('frst_t').style.display = "block";
+                              document.getElementById('second_t').style.display = "none";
+                              // Small Device
+
+                        } else if (width < 1199) {
+                              document.getElementById('frst_t').style.display = "none";
+                              document.getElementById('second_t').style.display = "block";
+                              // Medium Device
+
+                        } else {
+                              document.getElementById('frst_t').style.display = "none";
+                              document.getElementById('second_t').style.display = "block";
+                              // Large Device
+
+                        }
+                  });
+            </script>
+            
+            <style type="text/css">
+                  @media print {
+                        .sticky-social, .sticky-social_mb, .pull-right, #printPDF {
+                              display: none !important;
+                        }
+                  }
+
+                  .f_vl {
+                        padding-right: 30px;
+                        font-size: 17px;
+                        cursor: pointer;
+                  }
+
+                  .log_oo {
+                        /* width: 20%; */
+                        display: flex;
+                        justify-content: space-between;
+                  }
+
+                        .log_oo img {
+                              width: 150px;
+                              /*width: 100%;
+                    height: auto;*/
+                        }
+
+                  .sticky-social_mb {
+                        position: fixed;
+                        bottom: 0px;
+                        padding: 0px;
+                        margin: 0px;
+                        width: 100%;
+                  }
+
+                  .social_mb {
+                        list-style: none;
+                        display: flex;
+                        width: 100%;
+                        margin-bottom: -8px;
+                  }
+
+                        .social_mb a {
+                              padding: 8px 0px;
+                              font-size: 30px;
+                              transition: all 0.8s ease-in-out;
+                              width: 20% !important;
+                              text-align: center;
+                        }
+            </style>
+            <style type="text/css">
+                  .section1 {
+                        position: relative;
+                        padding: 10px 0px;
+                        width: 100%;
+                  }
+
+
+
+                  .sticky-social {
+                        position: fixed;
+                        top: 20px;
+                        left: 0px;
+                        padding: 0px;
+                        margin: 0px;
+                  }
+
+                  .social {
+                        list-style: none;
+                  }
+
+                        .social a li {
+                              padding: 8px 12px;
+                              font-size: 25px;
+                              transition: all 0.8s ease-in-out;
+                        }
+
+                              .social a li:hover {
+                                    margin-right: -30px;
+                                    box-shadow: 2px 5px 10px grey;
+                              }
+
+                                    .social a li:hover .fa {
+                                          margin-left: 20px;
+                                    }
+
+                  .fb_b {
+                        /* background-color: rgb(59, 89, 152);*/
+                        background-color: rgba(65,103,178,255);
+                  }
+
+                  .twitter_r {
+                        /* background-color: rgb(29, 161, 242);*/
+                        background-color: #000000;
+                  }
+
+                  .whatsapp_r {
+                        /* background-color: rgb(77, 194, 71);*/
+                        background-color: rgba(13,191,67,255);
+                  }
+
+                  .fa-envelope_r {
+                        /* background-color: rgb(219, 68, 55);*/
+                        background-color: #e2123d;
+                  }
+
+                  .fa-linkedin_r {
+                        background-color: rgb(0, 119, 181);
+                  }
+            </style>
+            <style type="text/css">
+                  @media only screen and (max-device-width: 767px) {
+                        p span img {
+                              max-width: 90% !important;
+                              height: auto !important;
+                        }
+
+                        p img {
+                              max-width: 90% !important;
+                              height: auto !important;
+                        }
+
+                        h2 {
+                              font-size: 20px !important;
+                              font-weight: 600 !important;
+                        }
+
+                        h3 {
+                              font-size: 18px !important;
+                              font-weight: 600 !important;
+                        }
+                  }
+            </style>
+            <style type="text/css">
+                  /* === Film Roll Badge Styling(IFFI2025 countdown) === */
+                  .film-roll-badge {
+                        position: absolute;
+                        top:82%;
+                        right: 20px;
+                        width: 230px;
+                        height: 70px;
+                        background: repeating-linear-gradient( to right, #9a2375 0px, #9a2375 18px, #6e2b8b 18px, #6e2b8b 36px );
+                        border-top: 8px solid #9a2375;
+                        border-bottom: 8px solid #9a2375;
+                        border-radius: 8px;
+                        overflow: hidden;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+                        animation: moveFilm 8s linear infinite;
+                        z-index: 10;
+                  }
+
+                        /* film sprocket holes */
+                        .film-roll-badge::before,
+                        .film-roll-badge::after {
+                              content: "";
+                              position: absolute;
+                              width: 100%;
+                              height: 10px;
+                              background: repeating-linear-gradient( to right, #9a2375 0px, #9a2375 10px, #fff 10px, #fff 20px );
+                              left: 0;
+                              z-index: 2;
+                        }
+
+                        .film-roll-badge::before {
+                              top: -4px;
+                        }
+
+                        .film-roll-badge::after {
+                              bottom: -4px;
+                        }
+
+                  .film-roll-inner {
+                        position: relative;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        animation: flicker 2s infinite ease-in-out;
+                  }
+
+                  .countdown-text {
+                        font-size: 1.3rem;
+                        font-weight: 700;
+                        color: #fff;
+                        text-shadow: 0 0 6px rgba(255, 255, 255, 0.4), 0 0 10px #000;
+                        white-space: nowrap;
+                  }
+
+                  /* === Animations === */
+                  @keyframes moveFilm {
+                        0% {
+                              background-position: 0 0;
+                        }
+
+                        100% {
+                              background-position: 120px 0;
+                        }
+                  }
+
+                  @keyframes flicker {
+                        0%, 100% {
+                              opacity: 1;
+                        }
+
+                        50% {
+                              opacity: 0.9;
+                        }
+
+                        25% {
+                              opacity: 0.95;
+                        }
+
+                        75% {
+                              opacity: 0.85;
+                        }
+                  }
+
+                  /* === Responsive Adjustments === */
+                  @media (max-width: 1500px) {
+                        .film-roll-badge {
+                              top: 68%;
+                              right: 18px;
+                              /* width: 220px; */
+                              height: 65px;
+                              font-size: 0.85rem;
+                        }
+
+                        .press-section {
+                              margin-top: 35px;
+                        }
+                  }
+
+                  @media (max-width: 992px) {
+                        .film-roll-badge {
+                              top: 52%;
+                              right: 10px;
+                               width: 200px; 
+                              height: 60px;
+                        }
+                  }
+
+                  @media (max-width: 768px) {
+                        .film-roll-badge {
+                              top: 56%;
+                              right: 10px;
+                               width: 124px; 
+                              height: 55px;
+                        }
+
+                        .countdown-text {
+                              font-size: 0.9rem;
+                        }
+                  }
+
+                  @media (max-width: 576px) {
+                        .film-roll-badge {
+                              top: 59%;
+                              right: 5px;
+                              /* width: 160px; */
+                              height: 50px;
+                        }
+
+                        .countdown-text {
+                              font-size: 0.85rem;
+                        }
+                  }
+            </style>
+          <script type="text/javascript">
+                const festivalStart = new Date("2025-11-20T00:00:00").getTime();
+                const festivalEnd = new Date("2025-11-28T23:59:59").getTime();
+
+                const countdownElement = document.getElementById("countdown");
+
+                const interval = setInterval(() => {
+                      const now = new Date().getTime();
+
+                      // BEFORE FESTIVAL — show days + hours left
+                      if (now < festivalStart) {
+                            const diff = festivalStart - now;
+                            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+                            countdownElement.innerHTML = `
+              ${days} Day${days !== 1 ? 's' : ''} 
+              ${hours} Hour${hours !== 1 ? 's' : ''} to go
+          `;
+
+                      }
+
+                      // DURING FESTIVAL — show 56th IFFI - Day X
+                      else if (now >= festivalStart && now <= festivalEnd) {
+                            const dayNumber = Math.floor((now - festivalStart) / (1000 * 60 * 60 * 24)) + 1;
+                            countdownElement.innerHTML = `56th IFFI - Day ${dayNumber}`;
+                      }
+
+                      // AFTER FESTIVAL — new message
+                      else {
+                            countdownElement.innerHTML = `✨ IFFI closes but never ends…`;
+
+                            // Width change logic
+                            const elements = document.querySelectorAll('.film-roll-badge');
+                            elements.forEach(el => el.style.width = "350px");
+
+                            clearInterval(interval);
+                      }
+
+                }, 1000);
+          </script>
+ <script type="text/javascript">
+
+               const miffStart = new Date("2026-06-15T00:00:00").getTime();
+               const miffEnd = new Date("2026-06-15T23:59:59").getTime();
+
+               const miffElement = document.getElementById("miff");
+
+               if (miffElement) {
+
+                   const miffInterval = setInterval(() => {
+
+                       const now = new Date().getTime();
+
+                       // Before MIFF
+                       if (now < miffStart) {
+
+                           const diff = miffStart - now;
+                           const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                           const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+        
+
+                   /*  miffElement.innerHTML = `${days} Day${days !== 1 ? 's' : ''} ${hours} Hour${hours !== 1 ? 's' : ''} to MIFF`;*/
+                           miffElement.innerHTML = `${days} Day${days === 1 ? '' : 's'} to MIFF ...`;
+
+
+                     }
+
+                       // During MIFF
+                       else if (now >= miffStart && now <= miffEnd) {
+
+                           const dayNumber =
+                               Math.floor((now - miffStart) / (1000 * 60 * 60 * 24)) + 1;
+
+                           miffElement.innerHTML = `19th MIFF - Day ${dayNumber}`;
+                       }
+
+                       // After MIFF
+                       else {
+
+                           miffElement.innerHTML = `✨ MIFF concludes, cinema lives on...`;
+
+                           document.querySelectorAll('.film-roll-badge')
+                               .forEach(el => el.style.width = "350px");
+
+                           clearInterval(miffInterval);
+                       }
+
+                   }, 1000);
+               }
+
+</script>
+
+      
+
+<script type="text/javascript">
+//<![CDATA[
+(function() {var fn = function() {$get("sc_HiddenField").value = '';Sys.Application.remove_init(fn);};Sys.Application.add_init(fn);})();Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","PopupControlID":"P_CategoryManagement","dynamicServicePath":"/PressReleasePage.aspx","id":"mpe"}, null, null, $get("Hidden"));
+});
+//]]>
+</script>
+<input type="hidden" name="__ncforminfo" value="8PZAJ_yMTTYMWbNzmcK9bYba9eNC3zUhkFAx7gkqH4tTjUI_yosE4LbI0_ygeZJGVP_z_2SA8IUMSBnaDyZ3a0dNciPd4TVwsNxOnFgyBf0QwoALTsbfBg=="/></form>
+</body>
+</html>
+

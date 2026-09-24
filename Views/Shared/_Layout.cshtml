@@ -1,0 +1,1079 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="utf-8" />
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+
+<title>
+    @ViewData["Title"] - FakeNewsDetection
+</title>
+
+<link rel="stylesheet"
+      href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+<link rel="stylesheet"
+      href="~/css/site.css"
+      asp-append-version="true" />
+
+<link rel="icon"
+      type="image/x-icon"
+      href="~/favicon.ico" />
+
+<!-- =====================================================
+     DARK MODE: LOAD SAVED THEME BEFORE PAGE RENDER
+     ===================================================== -->
+<script>
+    (function () {
+
+        const savedTheme =
+            localStorage.getItem("fakeNewsTheme");
+
+        if (savedTheme === "dark") {
+            document.documentElement
+                .setAttribute("data-theme", "dark");
+        }
+        else {
+            document.documentElement
+                .setAttribute("data-theme", "light");
+        }
+
+    })();
+</script>
+
+
+<style>
+
+    /* =========================================
+       GLOBAL MOBILE POLISH
+       ========================================= */
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+
+    /* =========================================
+       DARK MODE - GLOBAL
+       ========================================= */
+
+    html[data-theme="dark"] {
+        color-scheme: dark;
+    }
+
+    html[data-theme="dark"] body {
+        background-color: #0f172a;
+        color: #e2e8f0;
+    }
+
+    html[data-theme="dark"] main {
+        background-color: #0f172a;
+    }
+
+
+    /* =========================================
+       NAVBAR
+       ========================================= */
+
+    .main-navbar {
+        padding-top: 0.65rem;
+        padding-bottom: 0.65rem;
+        transition:
+            background-color 0.25s ease,
+            border-color 0.25s ease;
+    }
+
+    .navbar-brand {
+        min-width: 0;
+    }
+
+    .navbar-brand-text {
+        white-space: nowrap;
+        font-size: 1rem;
+    }
+
+    .navbar-toggler {
+        padding: 0.45rem 0.65rem;
+    }
+
+    .navbar-nav .nav-link {
+        border-radius: 0.5rem;
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .navbar-nav .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar-analyze-btn {
+        white-space: nowrap;
+    }
+
+    .account-link {
+        max-width: 220px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+
+    /* =========================================
+       DARK MODE TOGGLE
+       ========================================= */
+
+    .theme-toggle {
+        min-width: 125px;
+        border-radius: 0.6rem;
+        font-weight: 600;
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    .theme-toggle-icon {
+        font-size: 1rem;
+        margin-right: 0.3rem;
+    }
+
+
+    /* =========================================
+       DARK MODE NAVBAR
+       ========================================= */
+
+    html[data-theme="dark"] .main-navbar {
+        background-color: #111827 !important;
+        border-color: #334155 !important;
+    }
+
+    html[data-theme="dark"] .main-navbar .navbar-brand,
+    html[data-theme="dark"] .main-navbar .nav-link {
+        color: #e2e8f0 !important;
+    }
+
+    html[data-theme="dark"] .main-navbar .nav-link:hover,
+    html[data-theme="dark"] .main-navbar .nav-link.active {
+        background-color: #1e293b;
+        color: #ffffff !important;
+    }
+
+    html[data-theme="dark"] .theme-toggle {
+        color: #f8fafc;
+        border-color: #64748b;
+        background-color: #1e293b;
+    }
+
+    html[data-theme="dark"] .theme-toggle:hover {
+        background-color: #334155;
+        border-color: #94a3b8;
+    }
+
+    html[data-theme="dark"] .navbar-toggler {
+        border-color: #64748b;
+    }
+
+    html[data-theme="dark"] .navbar-toggler-icon {
+        filter: invert(1);
+    }
+
+
+    /* =========================================
+       DARK MODE DROPDOWN
+       ========================================= */
+
+    html[data-theme="dark"] .dropdown-menu {
+        background-color: #1e293b;
+        border-color: #475569;
+    }
+
+    html[data-theme="dark"] .dropdown-item {
+        color: #e2e8f0;
+    }
+
+    html[data-theme="dark"] .dropdown-item:hover,
+    html[data-theme="dark"] .dropdown-item:focus {
+        background-color: #334155;
+        color: #ffffff;
+    }
+
+    html[data-theme="dark"] .dropdown-item-text {
+        color: #94a3b8 !important;
+    }
+
+    html[data-theme="dark"] .dropdown-divider {
+        border-color: #475569;
+    }
+
+
+    /* =========================================
+       DARK MODE COMMON BOOTSTRAP ELEMENTS
+       ========================================= */
+
+    html[data-theme="dark"] .card {
+        background-color: #1e293b;
+        color: #e2e8f0;
+        border-color: #334155;
+    }
+
+    html[data-theme="dark"] .bg-white {
+        background-color: #1e293b !important;
+    }
+
+    html[data-theme="dark"] .bg-light {
+        background-color: #111827 !important;
+    }
+
+    html[data-theme="dark"] .text-dark {
+        color: #e2e8f0 !important;
+    }
+
+    html[data-theme="dark"] .text-muted {
+        color: #94a3b8 !important;
+    }
+
+    html[data-theme="dark"] .border-top,
+    html[data-theme="dark"] .border-bottom {
+        border-color: #334155 !important;
+    }
+
+    html[data-theme="dark"] hr {
+        border-color: #475569;
+        opacity: 1;
+    }
+
+
+    /* =========================================
+       DARK MODE FOR INPUTS
+       ========================================= */
+
+    html[data-theme="dark"] .form-control,
+    html[data-theme="dark"] .form-select {
+        background-color: #0f172a;
+        color: #e2e8f0;
+        border-color: #475569;
+    }
+
+    html[data-theme="dark"] .form-control::placeholder {
+        color: #64748b;
+    }
+
+    html[data-theme="dark"] .form-control:focus,
+    html[data-theme="dark"] .form-select:focus {
+        background-color: #0f172a;
+        color: #ffffff;
+        border-color: #60a5fa;
+        box-shadow: 0 0 0 0.2rem rgba(96, 165, 250, 0.2);
+    }
+
+
+    /* =========================================
+       DARK MODE TABLE
+       ========================================= */
+
+    html[data-theme="dark"] .table {
+        color: #e2e8f0;
+        border-color: #334155;
+    }
+
+    html[data-theme="dark"] .table-light {
+        --bs-table-bg: #1e293b;
+        --bs-table-color: #e2e8f0;
+        border-color: #334155;
+    }
+
+    html[data-theme="dark"] .table-hover > tbody > tr:hover {
+        --bs-table-hover-bg: #263449;
+        --bs-table-hover-color: #ffffff;
+    }
+
+
+    /* =========================================
+       FOOTER
+       ========================================= */
+
+    .site-footer {
+        margin-top: auto;
+        transition:
+            background-color 0.25s ease,
+            border-color 0.25s ease;
+    }
+
+    .footer-description {
+        max-width: 620px;
+    }
+
+    html[data-theme="dark"] .site-footer {
+        background-color: #111827 !important;
+        border-color: #334155 !important;
+    }
+
+    html[data-theme="dark"] .site-footer h6 {
+        color: #e2e8f0;
+    }
+
+    html[data-theme="dark"] .site-footer a {
+        color: #94a3b8 !important;
+    }
+
+    html[data-theme="dark"] .site-footer a:hover {
+        color: #ffffff !important;
+    }
+
+
+    /* =========================================
+       TABLET
+       ========================================= */
+
+    @@media (max-width: 991.98px) {
+
+        .navbar-collapse {
+            padding-top: 0.75rem;
+        }
+
+        .navbar-nav {
+            gap: 0.25rem !important;
+        }
+
+        .navbar-nav .nav-item {
+            width: 100%;
+        }
+
+        .navbar-nav .nav-link {
+            padding: 0.7rem 0.9rem !important;
+        }
+
+        .navbar-analyze-btn,
+        .navbar-login-btn,
+        .navbar-register-btn,
+        .theme-toggle {
+            width: 100%;
+            text-align: center;
+        }
+
+        .theme-toggle {
+            margin-top: 0.5rem;
+        }
+
+        .account-link {
+            max-width: none;
+        }
+
+        .navbar-nav .dropdown-menu {
+            width: 100%;
+            border-radius: 0.75rem;
+            margin-top: 0.35rem;
+        }
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @@media (max-width: 575.98px) {
+
+        .main-navbar {
+            padding-top: 0.55rem;
+            padding-bottom: 0.55rem;
+        }
+
+        .navbar-brand {
+            gap: 0.4rem !important;
+        }
+
+        .navbar-brand-icon {
+            font-size: 1.3rem !important;
+        }
+
+        .navbar-brand-text {
+            font-size: 0.9rem;
+        }
+
+        .navbar-toggler {
+            padding: 0.35rem 0.55rem;
+        }
+
+        .navbar-collapse {
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 0.95rem;
+        }
+
+        .navbar-analyze-btn,
+        .navbar-login-btn,
+        .navbar-register-btn {
+            padding-top: 0.65rem !important;
+            padding-bottom: 0.65rem !important;
+        }
+
+        .theme-toggle {
+            min-height: 44px;
+            margin-top: 0.5rem;
+        }
+
+        .site-footer .container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .site-footer .row {
+            --bs-gutter-y: 1.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            line-height: 1.5;
+        }
+    }
+
+</style>
+```
+
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+```
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm main-navbar"
+         aria-label="Main navigation">
+
+        <div class="container">
+
+            <!-- Brand -->
+
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold"
+               asp-area=""
+               asp-controller="Home"
+               asp-action="Index">
+
+                <span class="fs-4 navbar-brand-icon"
+                      aria-hidden="true">
+
+                    🛡️
+
+                </span>
+
+                <span class="navbar-brand-text">
+
+                    Fake<span class="text-info">News</span>Detection
+
+                </span>
+
+            </a>
+
+
+            <!-- Mobile Toggle -->
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <!-- Navigation -->
+
+            <div class="collapse navbar-collapse"
+                 id="mainNavbar">
+
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+
+
+                    <!-- HOME -->
+
+                    <li class="nav-item">
+
+                        <a class="nav-link px-3
+                                  @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home"
+                                    ? "active fw-semibold"
+                                    : "")"
+                           asp-area=""
+                           asp-controller="Home"
+                           asp-action="Index">
+
+                            🏠 Home
+
+                        </a>
+
+                    </li>
+
+
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+
+                        <!-- DASHBOARD -->
+
+                        <li class="nav-item">
+
+                            <a class="nav-link px-3
+                                      @(ViewContext.RouteData.Values["controller"]?.ToString() == "Dashboard"
+                                        ? "active fw-semibold"
+                                        : "")"
+                               asp-area=""
+                               asp-controller="Dashboard"
+                               asp-action="Index">
+
+                                📊 Dashboard
+
+                            </a>
+
+                        </li>
+
+
+                        <!-- CHECK NEWS -->
+
+                        <li class="nav-item">
+
+                            <a class="nav-link px-3
+                                      @(ViewContext.RouteData.Values["action"]?.ToString() == "Check"
+                                        ? "active fw-semibold"
+                                        : "")"
+                               asp-area=""
+                               asp-controller="News"
+                               asp-action="Check">
+
+                                🔍 Check News
+
+                            </a>
+
+                        </li>
+
+
+                        <!-- HISTORY -->
+
+                        <li class="nav-item">
+
+                            <a class="nav-link px-3
+                                      @(ViewContext.RouteData.Values["action"]?.ToString() == "History"
+                                        ? "active fw-semibold"
+                                        : "")"
+                               asp-area=""
+                               asp-controller="News"
+                               asp-action="History">
+
+                                🕘 History
+
+                            </a>
+
+                        </li>
+
+
+                        <!-- ANALYZE NEWS BUTTON -->
+
+                        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+
+                            <a class="btn btn-primary px-4 fw-semibold navbar-analyze-btn"
+                               asp-area=""
+                               asp-controller="News"
+                               asp-action="Check">
+
+                                🔍 Analyze News
+
+                            </a>
+
+                        </li>
+
+
+                        <!-- ACCOUNT -->
+
+                        <li class="nav-item dropdown ms-lg-2 mt-2 mt-lg-0">
+
+                            <a class="nav-link dropdown-toggle px-3 account-link"
+                               href="#"
+                               id="accountDropdown"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+
+                                👤 @User.Identity.Name
+
+                            </a>
+
+
+                            <ul class="dropdown-menu dropdown-menu-end shadow"
+                                aria-labelledby="accountDropdown">
+
+                                <li>
+
+                                    <a class="dropdown-item"
+                                       asp-controller="Dashboard"
+                                       asp-action="Index">
+
+                                        📊 Dashboard
+
+                                    </a>
+
+                                </li>
+
+                                <li>
+
+                                    <a class="dropdown-item"
+                                       asp-controller="News"
+                                       asp-action="Check">
+
+                                        🔍 Check News
+
+                                    </a>
+
+                                </li>
+
+                                <li>
+
+                                    <a class="dropdown-item"
+                                       asp-controller="News"
+                                       asp-action="History">
+
+                                        🕘 History
+
+                                    </a>
+
+                                </li>
+
+                                <li>
+
+                                    <hr class="dropdown-divider" />
+
+                                </li>
+
+                                <li>
+
+                                    <span class="dropdown-item-text small text-muted">
+
+                                        Signed in as
+
+                                        <strong>
+                                            @User.Identity.Name
+                                        </strong>
+
+                                    </span>
+
+                                </li>
+
+                                <li>
+
+                                    <hr class="dropdown-divider" />
+
+                                </li>
+
+                                <li>
+
+                                    <form asp-area="Identity"
+                                          asp-page="/Account/Logout"
+                                          asp-route-returnUrl="@Url.Action("Index", "Home")"
+                                          method="post">
+
+                                        <button type="submit"
+                                                class="dropdown-item text-danger">
+
+                                            🚪 Logout
+
+                                        </button>
+
+                                    </form>
+
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                    }
+
+                    else
+                    {
+
+                        <!-- LOGIN -->
+
+                        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+
+                            <a class="btn btn-outline-light px-3 fw-semibold navbar-login-btn"
+                               asp-area="Identity"
+                               asp-page="/Account/Login">
+
+                                🔐 Login
+
+                            </a>
+
+                        </li>
+
+
+                        <!-- REGISTER -->
+
+                        <li class="nav-item mt-2 mt-lg-0">
+
+                            <a class="btn btn-info px-3 fw-semibold navbar-register-btn"
+                               asp-area="Identity"
+                               asp-page="/Account/Register">
+
+                                📝 Register
+
+                            </a>
+
+                        </li>
+
+                    }
+
+
+                    <!-- DARK MODE BUTTON -->
+
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+
+                        <button type="button"
+                                id="themeToggle"
+                                class="btn btn-outline-light theme-toggle"
+                                aria-label="Switch to dark mode"
+                                title="Switch to dark mode">
+
+                            <span id="themeIcon"
+                                  class="theme-toggle-icon">
+
+                                🌙
+
+                            </span>
+
+                            <span id="themeText">
+                                Dark Mode
+                            </span>
+
+                        </button>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main role="main"
+      class="flex-fill">
+
+    @RenderBody()
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="border-top bg-light site-footer">
+
+    <div class="container py-4">
+
+        <div class="row gy-4">
+
+
+            <!-- ABOUT -->
+
+            <div class="col-md-6">
+
+                <div class="d-flex align-items-center gap-2 mb-2">
+
+                    <span class="fs-4">
+                        🛡️
+                    </span>
+
+                    <h6 class="fw-bold mb-0">
+                        FakeNewsDetection
+                    </h6>
+
+                </div>
+
+                <p class="text-muted small mb-0 footer-description">
+
+                    An AI-assisted web application designed to analyze
+                    news content and provide REAL or FAKE predictions
+                    with confidence scores and explanations.
+
+                </p>
+
+            </div>
+
+
+            <!-- QUICK LINKS -->
+
+            <div class="col-6 col-md-3">
+
+                <h6 class="fw-bold mb-3">
+                    Quick Links
+                </h6>
+
+                <ul class="list-unstyled small mb-0">
+
+                    <li class="mb-2">
+
+                        <a class="text-decoration-none text-muted"
+                           asp-controller="Home"
+                           asp-action="Index">
+
+                            Home
+
+                        </a>
+
+                    </li>
+
+
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+
+                        <li class="mb-2">
+
+                            <a class="text-decoration-none text-muted"
+                               asp-controller="Dashboard"
+                               asp-action="Index">
+
+                                Dashboard
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="mb-2">
+
+                            <a class="text-decoration-none text-muted"
+                               asp-controller="News"
+                               asp-action="Check">
+
+                                Check News
+
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <a class="text-decoration-none text-muted"
+                               asp-controller="News"
+                               asp-action="History">
+
+                                History
+
+                            </a>
+
+                        </li>
+
+                    }
+
+                </ul>
+
+            </div>
+
+
+            <!-- TECHNOLOGY -->
+
+            <div class="col-6 col-md-3">
+
+                <h6 class="fw-bold mb-3">
+                    Technology
+                </h6>
+
+                <p class="text-muted small mb-1">
+                    ASP.NET Core MVC
+                </p>
+
+                <p class="text-muted small mb-1">
+                    Ollama + Qwen3
+                </p>
+
+                <p class="text-muted small mb-0">
+                    Entity Framework Core
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <hr class="my-4" />
+
+
+        <!-- COPYRIGHT -->
+
+        <div class="d-flex flex-column flex-md-row
+                    justify-content-between
+                    align-items-md-center
+                    gap-2 footer-bottom">
+
+            <p class="text-muted small mb-0">
+
+                &copy; @DateTime.Now.Year FakeNewsDetection
+
+            </p>
+
+            <p class="text-muted small mb-0">
+
+                AI-assisted analysis • Verify important news independently
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- ================= SCRIPTS ================= -->
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="~/js/site.js"
+        asp-append-version="true"></script>
+
+
+<!-- ================= DARK MODE SCRIPT ================= -->
+
+<script>
+
+    (function () {
+
+        const html =
+            document.documentElement;
+
+        const themeToggle =
+            document.getElementById("themeToggle");
+
+        const themeIcon =
+            document.getElementById("themeIcon");
+
+        const themeText =
+            document.getElementById("themeText");
+
+
+        function updateThemeButton(theme) {
+
+            if (!themeIcon ||
+                !themeText ||
+                !themeToggle) {
+
+                return;
+            }
+
+
+            if (theme === "dark") {
+
+                themeIcon.textContent = "☀️";
+
+                themeText.textContent =
+                    "Light Mode";
+
+                themeToggle.setAttribute(
+                    "aria-label",
+                    "Switch to light mode");
+
+                themeToggle.setAttribute(
+                    "title",
+                    "Switch to light mode");
+            }
+            else {
+
+                themeIcon.textContent = "🌙";
+
+                themeText.textContent =
+                    "Dark Mode";
+
+                themeToggle.setAttribute(
+                    "aria-label",
+                    "Switch to dark mode");
+
+                themeToggle.setAttribute(
+                    "title",
+                    "Switch to dark mode");
+            }
+
+        }
+
+
+        function setTheme(theme) {
+
+            html.setAttribute(
+                "data-theme",
+                theme);
+
+            localStorage.setItem(
+                "fakeNewsTheme",
+                theme);
+
+            updateThemeButton(theme);
+
+        }
+
+
+        const currentTheme =
+            html.getAttribute("data-theme")
+            || "light";
+
+
+        updateThemeButton(currentTheme);
+
+
+        if (themeToggle) {
+
+            themeToggle.addEventListener(
+                "click",
+                function () {
+
+                    const current =
+                        html.getAttribute(
+                            "data-theme");
+
+                    const newTheme =
+                        current === "dark"
+                            ? "light"
+                            : "dark";
+
+                    setTheme(newTheme);
+
+                });
+        }
+
+    })();
+
+</script>
+
+
+@RenderSection("Scripts", required: false)
+```
+
+</body>
+
+</html>

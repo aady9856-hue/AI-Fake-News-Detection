@@ -1,0 +1,528 @@
+@model FakeNewsDetection.Models.NewsCheckViewModel
+
+@{
+ViewData["Title"] = "Check News";
+}
+
+<style>
+    /* =========================================
+       NEWS CHECK PAGE
+       ========================================= */
+
+    .news-check-page {
+        overflow-x: hidden;
+    }
+
+    .news-check-card {
+        border-radius: 1rem;
+    }
+
+    .news-check-title {
+        font-size: 2rem;
+    }
+
+    .news-input {
+        border-radius: 0.65rem;
+    }
+
+    .article-textarea {
+        resize: vertical;
+        min-height: 240px;
+    }
+
+    .how-card {
+        border-radius: 1rem;
+    }
+
+    .how-step {
+        height: 100%;
+        padding: 1rem;
+        border-radius: 0.75rem;
+    }
+
+    .how-step-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .analyze-button {
+        min-height: 52px;
+    }
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @@media (max-width: 575.98px) {
+
+        .news-check-page {
+            padding-top: 1rem !important;
+            padding-bottom: 1.5rem !important;
+        }
+
+        .news-check-card .card-body {
+            padding: 1.25rem !important;
+        }
+
+        .news-check-title {
+            font-size: 1.55rem;
+        }
+
+        .news-check-subtitle {
+            font-size: 0.9rem;
+        }
+
+        .news-input {
+            font-size: 1rem;
+        }
+
+        .article-textarea {
+            min-height: 220px;
+        }
+
+        .or-divider {
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem !important;
+        }
+
+        .analyze-button {
+            width: 100%;
+            min-height: 50px;
+        }
+
+        .how-card .card-body {
+            padding: 1.25rem !important;
+        }
+
+        .how-card h5 {
+            font-size: 1.1rem;
+        }
+
+        .how-step {
+            padding: 0.75rem;
+        }
+
+        .how-step-icon {
+            font-size: 1.8rem;
+        }
+
+        .how-step strong {
+            font-size: 0.95rem;
+        }
+
+        .how-step p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .disclaimer {
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+    }
+    /* =========================================
+   DARK MODE
+   ========================================= */
+
+html[data-theme="dark"] .news-check-card,
+html[data-theme="dark"] .how-card {
+    background-color: #1f2937 !important;
+    color: #f3f4f6;
+}
+
+html[data-theme="dark"] .news-check-card h1,
+html[data-theme="dark"] .news-check-card h2,
+html[data-theme="dark"] .news-check-card h3,
+html[data-theme="dark"] .news-check-card h4,
+html[data-theme="dark"] .news-check-card h5,
+html[data-theme="dark"] .how-card h1,
+html[data-theme="dark"] .how-card h2,
+html[data-theme="dark"] .how-card h3,
+html[data-theme="dark"] .how-card h4,
+html[data-theme="dark"] .how-card h5 {
+    color: #f3f4f6;
+}
+
+html[data-theme="dark"] .news-check-card .text-muted,
+html[data-theme="dark"] .how-card .text-muted {
+    color: #9ca3af !important;
+}
+
+/* Inputs */
+
+html[data-theme="dark"] .news-check-card .form-control,
+html[data-theme="dark"] .news-check-card textarea,
+html[data-theme="dark"] .news-check-card input {
+    background-color: #111827;
+    color: #f3f4f6;
+    border-color: #4b5563;
+}
+
+html[data-theme="dark"] .news-check-card .form-control::placeholder,
+html[data-theme="dark"] .news-check-card textarea::placeholder,
+html[data-theme="dark"] .news-check-card input::placeholder {
+    color: #9ca3af;
+}
+
+html[data-theme="dark"] .news-check-card .form-control:focus,
+html[data-theme="dark"] .news-check-card textarea:focus,
+html[data-theme="dark"] .news-check-card input:focus {
+    background-color: #111827;
+    color: #ffffff;
+    border-color: #0d6efd;
+}
+
+/* Labels */
+
+html[data-theme="dark"] .news-check-card .form-label {
+    color: #e5e7eb;
+}
+
+/* How it works / borders */
+
+html[data-theme="dark"] .news-check-card hr,
+html[data-theme="dark"] .how-card hr {
+    border-color: #374151;
+    opacity: 1;
+}
+
+html[data-theme="dark"] .how-card {
+    border-color: #374151 !important;
+}
+
+/* Validation */
+
+html[data-theme="dark"] .news-check-card .text-danger {
+    color: #f87171 !important;
+}
+</style>
+
+<div class="container py-5 news-check-page">
+
+```
+<div class="row justify-content-center">
+
+    <div class="col-lg-9">
+
+        <!-- =====================================
+             MAIN CARD
+             ===================================== -->
+
+        <div class="card shadow-sm border-0 news-check-card">
+
+            <div class="card-body p-4 p-md-5">
+
+                <!-- HEADER -->
+
+                <div class="text-center mb-4">
+
+                    <h1 class="fw-bold news-check-title">
+
+                        <i class="bi bi-shield-check me-2"></i>
+
+                        Fake News Detection
+
+                    </h1>
+
+                    <p class="text-muted mb-0 news-check-subtitle">
+
+                        Analyze a news article using AI
+
+                    </p>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <form asp-controller="News"
+                      asp-action="Check"
+                      method="post">
+
+                    @Html.AntiForgeryToken()
+
+
+                    <!-- VALIDATION SUMMARY -->
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="text-danger mb-3">
+                    </div>
+
+
+                    <!-- =================================
+                         URL
+                         ================================= -->
+
+                    <div class="mb-4">
+
+                        <label asp-for="Url"
+                               class="form-label fw-semibold">
+
+                            <i class="bi bi-link-45deg me-1"></i>
+
+                            News Article URL
+
+                            <span class="text-muted fw-normal">
+                                (Optional)
+                            </span>
+
+                        </label>
+
+
+                        <input asp-for="Url"
+                               class="form-control form-control-lg news-input"
+                               placeholder="https://example.com/news/article"
+                               inputmode="url"
+                               autocomplete="url" />
+
+
+                        <div class="form-text">
+
+                            Paste a news article URL. The application
+                            will try to automatically extract the
+                            headline and article content.
+
+                        </div>
+
+
+                        <span asp-validation-for="Url"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <!-- OR -->
+
+                    <div class="text-center text-muted mb-4 or-divider">
+
+                        <span>
+                            OR enter the article manually
+                        </span>
+
+                    </div>
+
+
+                    <!-- =================================
+                         HEADLINE
+                         ================================= -->
+
+                    <div class="mb-4">
+
+                        <label asp-for="Headline"
+                               class="form-label fw-semibold">
+
+                            <i class="bi bi-card-heading me-1"></i>
+
+                            Headline
+
+                        </label>
+
+
+                        <input asp-for="Headline"
+                               class="form-control form-control-lg news-input"
+                               placeholder="Enter news headline"
+                               autocomplete="off" />
+
+
+                        <span asp-validation-for="Headline"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <!-- =================================
+                         ARTICLE CONTENT
+                         ================================= -->
+
+                    <div class="mb-4">
+
+                        <label asp-for="ArticleContent"
+                               class="form-label fw-semibold">
+
+                            <i class="bi bi-file-text me-1"></i>
+
+                            Article Content
+
+                        </label>
+
+
+                        <textarea asp-for="ArticleContent"
+                                  class="form-control news-input article-textarea"
+                                  rows="10"
+                                  placeholder="Paste the complete news article content here...">
+                        </textarea>
+
+
+                        <div class="form-text">
+
+                            For best results, provide the complete
+                            article content.
+
+                        </div>
+
+
+                        <span asp-validation-for="ArticleContent"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <!-- =================================
+                         ANALYZE BUTTON
+                         ================================= -->
+
+                    <div class="d-grid">
+
+                        <button type="submit"
+                                class="btn btn-primary btn-lg fw-semibold analyze-button">
+
+                            <i class="bi bi-search me-2"></i>
+
+                            Analyze News
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             HOW IT WORKS
+             ===================================== -->
+
+        <div class="card border-0 shadow-sm mt-4 how-card">
+
+            <div class="card-body p-4">
+
+                <h5 class="fw-bold mb-0">
+
+                    <i class="bi bi-info-circle me-2"></i>
+
+                    How it works
+
+                </h5>
+
+
+                <div class="row text-center mt-4 g-3">
+
+
+                    <!-- STEP 1 -->
+
+                    <div class="col-md-4">
+
+                        <div class="how-step">
+
+                            <div class="how-step-icon">
+                                🔗
+                            </div>
+
+                            <strong>
+                                Enter URL
+                            </strong>
+
+                            <p class="small text-muted mb-0 mt-1">
+
+                                Paste a news article URL.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STEP 2 -->
+
+                    <div class="col-md-4">
+
+                        <div class="how-step">
+
+                            <div class="how-step-icon">
+                                🤖
+                            </div>
+
+                            <strong>
+                                AI Analysis
+                            </strong>
+
+                            <p class="small text-muted mb-0 mt-1">
+
+                                AI analyzes the article.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STEP 3 -->
+
+                    <div class="col-md-4">
+
+                        <div class="how-step">
+
+                            <div class="how-step-icon">
+                                🛡️
+                            </div>
+
+                            <strong>
+                                Get Result
+                            </strong>
+
+                            <p class="small text-muted mb-0 mt-1">
+
+                                Receive REAL or FAKE prediction.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             DISCLAIMER
+             ===================================== -->
+
+        <div class="alert alert-warning mt-4 small disclaimer">
+
+            <strong>
+                Important:
+            </strong>
+
+            AI-generated results are an analysis aid and should not
+            be treated as absolute proof that a news article is
+            true or false. Always verify important claims using
+            reliable sources.
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+@section Scripts {
+
+```
+<partial name="_ValidationScriptsPartial" />
+```
+
+}

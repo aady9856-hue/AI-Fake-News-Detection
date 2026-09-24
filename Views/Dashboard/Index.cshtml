@@ -1,0 +1,768 @@
+@model FakeNewsDetection.Models.DashboardViewModel
+
+@{
+ViewData["Title"] = "Dashboard";
+}
+
+<style>
+    /* =========================================
+       DASHBOARD MOBILE POLISH
+       ========================================= */
+
+    .dashboard-page {
+        overflow-x: hidden;
+    }
+
+    .dashboard-stat-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .dashboard-stat-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .stat-icon {
+        flex-shrink: 0;
+    }
+
+    .recent-card-header {
+        gap: 1rem;
+    }
+
+    .recent-table {
+        min-width: 650px;
+    }
+
+    .dashboard-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .summary-progress {
+        height: 10px;
+    }
+
+    /* =========================================
+       TABLET
+       ========================================= */
+
+    @@media (max-width: 991.98px) {
+
+        .dashboard-page {
+            padding-top: 1.5rem !important;
+        }
+
+        .dashboard-stat-card .card-body {
+            padding: 1.25rem !important;
+        }
+
+        .recent-card-header {
+            align-items: flex-start !important;
+        }
+    }
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @@media (max-width: 575.98px) {
+
+        .dashboard-page {
+            padding-top: 1rem !important;
+            padding-bottom: 1.5rem !important;
+        }
+
+        /* Header */
+
+        .dashboard-header h1 {
+            font-size: 1.75rem;
+        }
+
+        .dashboard-header p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .dashboard-analyze-btn {
+            width: 100%;
+        }
+
+        /* Statistics */
+
+        .statistics-row {
+            --bs-gutter-x: 0.85rem;
+            --bs-gutter-y: 0.85rem;
+        }
+
+        .dashboard-stat-card .card-body {
+            padding: 1rem !important;
+        }
+
+        .dashboard-stat-card .text-muted {
+            font-size: 0.85rem;
+        }
+
+        .dashboard-stat-card h2 {
+            font-size: 1.5rem;
+        }
+
+        .stat-icon {
+            font-size: 1.8rem !important;
+        }
+
+        /* Recent Analyses */
+
+        .recent-card-header {
+            flex-direction: column;
+            align-items: stretch !important;
+            padding: 1.25rem !important;
+        }
+
+        .recent-card-header h4 {
+            font-size: 1.2rem;
+        }
+
+        .recent-card-header p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .history-btn {
+            width: 100%;
+        }
+
+        .dashboard-table-wrapper {
+            border-top: 1px solid #eee;
+        }
+
+        .recent-table th,
+        .recent-table td {
+            white-space: nowrap;
+        }
+
+        .recent-table th:first-child,
+        .recent-table td:first-child {
+            min-width: 220px;
+        }
+
+        .recent-table th,
+        .recent-table td {
+            font-size: 0.85rem;
+        }
+
+        /* Empty state */
+
+        .empty-state {
+            padding: 2.5rem 1.25rem !important;
+        }
+
+        .empty-state p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .empty-state .btn {
+            width: 100%;
+        }
+
+        /* Summary */
+
+        .summary-card .card-body {
+            padding: 1.25rem !important;
+        }
+
+        .summary-card h4 {
+            font-size: 1.2rem;
+        }
+
+        .summary-card .alert {
+            font-size: 0.9rem;
+        }
+
+        /* Progress */
+
+        .summary-progress {
+            height: 9px;
+        }
+    }
+    /* =========================================
+   DARK MODE
+   ========================================= */
+
+html[data-theme="dark"] .dashboard-page .card {
+    background-color: #1f2937;
+    color: #f3f4f6;
+}
+
+html[data-theme="dark"] .dashboard-page .card-header {
+    background-color: #1f2937 !important;
+    color: #f3f4f6;
+}
+
+html[data-theme="dark"] .dashboard-page .text-muted {
+    color: #9ca3af !important;
+}
+
+html[data-theme="dark"] .dashboard-page h1,
+html[data-theme="dark"] .dashboard-page h2,
+html[data-theme="dark"] .dashboard-page h4,
+html[data-theme="dark"] .dashboard-page h5 {
+    color: #f3f4f6;
+}
+
+/* Recent analyses table */
+
+html[data-theme="dark"] .dashboard-page .table {
+    --bs-table-bg: #1f2937;
+    --bs-table-color: #f3f4f6;
+    --bs-table-border-color: #374151;
+}
+
+html[data-theme="dark"] .dashboard-page .table-light {
+    --bs-table-bg: #111827;
+    --bs-table-color: #f3f4f6;
+}
+
+html[data-theme="dark"] .dashboard-page .table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: #374151;
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .dashboard-page .dashboard-table-wrapper {
+    border-top-color: #374151;
+}
+
+/* Summary */
+
+html[data-theme="dark"] .dashboard-page hr {
+    border-color: #374151;
+    opacity: 1;
+}
+
+html[data-theme="dark"] .dashboard-page .alert-info {
+    background-color: #12344a;
+    color: #dbeafe;
+}
+
+html[data-theme="dark"] .dashboard-page .progress {
+    background-color: #374151;
+}
+
+/* Empty state */
+
+html[data-theme="dark"] .dashboard-page .empty-state {
+    color: #f3f4f6;
+}
+</style>
+
+<div class="container py-4 dashboard-page">
+
+```
+<!-- =========================================
+     HEADER
+     ========================================= -->
+
+<div class="d-flex flex-column flex-md-row
+            justify-content-between
+            align-items-md-center
+            mb-4
+            dashboard-header">
+
+    <div>
+
+        <span class="badge bg-primary-subtle text-primary px-3 py-2 mb-2">
+            🤖 AI Dashboard
+        </span>
+
+        <h1 class="fw-bold mb-1">
+            Your Dashboard
+        </h1>
+
+        <p class="text-muted mb-0">
+            Track your fake news detection activity and results.
+        </p>
+
+    </div>
+
+
+    <div class="mt-3 mt-md-0">
+
+        <a asp-controller="News"
+           asp-action="Check"
+           class="btn btn-primary px-4 py-2 fw-semibold dashboard-analyze-btn">
+
+            🔍 Analyze News
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     STATISTICS
+     ========================================= -->
+
+<div class="row g-4 mb-4 statistics-row">
+
+    <!-- Total -->
+
+    <div class="col-6 col-xl-3">
+
+        <div class="card border-0 shadow-sm h-100 dashboard-stat-card">
+
+            <div class="card-body p-4">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <p class="text-muted mb-1">
+                            Total Analyses
+                        </p>
+
+                        <h2 class="fw-bold mb-0">
+                            @Model.TotalArticles
+                        </h2>
+
+                    </div>
+
+                    <div class="fs-1 stat-icon">
+                        📊
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Real -->
+
+    <div class="col-6 col-xl-3">
+
+        <div class="card border-0 shadow-sm h-100 dashboard-stat-card">
+
+            <div class="card-body p-4">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <p class="text-muted mb-1">
+                            Real News
+                        </p>
+
+                        <h2 class="fw-bold text-success mb-0">
+                            @Model.RealArticles
+                        </h2>
+
+                    </div>
+
+                    <div class="fs-1 stat-icon">
+                        🟢
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Fake -->
+
+    <div class="col-6 col-xl-3">
+
+        <div class="card border-0 shadow-sm h-100 dashboard-stat-card">
+
+            <div class="card-body p-4">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <p class="text-muted mb-1">
+                            Fake News
+                        </p>
+
+                        <h2 class="fw-bold text-danger mb-0">
+                            @Model.FakeArticles
+                        </h2>
+
+                    </div>
+
+                    <div class="fs-1 stat-icon">
+                        🔴
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Confidence -->
+
+    <div class="col-6 col-xl-3">
+
+        <div class="card border-0 shadow-sm h-100 dashboard-stat-card">
+
+            <div class="card-body p-4">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <p class="text-muted mb-1">
+                            Avg. Confidence
+                        </p>
+
+                        <h2 class="fw-bold mb-0">
+                            @Model.AverageConfidence.ToString("0.0")%
+                        </h2>
+
+                    </div>
+
+                    <div class="fs-1 stat-icon">
+                        🎯
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     MAIN DASHBOARD
+     ========================================= -->
+
+<div class="row g-4">
+
+
+    <!-- =====================================
+         RECENT ANALYSES
+         ===================================== -->
+
+    <div class="col-lg-8">
+
+        <div class="card border-0 shadow-sm h-100">
+
+            <div class="card-header bg-white border-0 p-4
+                        recent-card-header">
+
+                <div>
+
+                    <h4 class="fw-bold mb-1">
+                        Recent Analyses
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        Your latest news detection results.
+                    </p>
+
+                </div>
+
+
+                <a asp-controller="News"
+                   asp-action="History"
+                   class="btn btn-outline-primary btn-sm history-btn">
+
+                    View History
+
+                </a>
+
+            </div>
+
+
+            <div class="card-body p-0">
+
+                @if (Model.RecentArticles.Any())
+                {
+
+                    <div class="dashboard-table-wrapper">
+
+                        <table class="table table-hover
+                                      align-middle
+                                      mb-0
+                                      recent-table">
+
+                            <thead class="table-light">
+
+                                <tr>
+
+                                    <th class="px-4">
+                                        Headline
+                                    </th>
+
+                                    <th>
+                                        Result
+                                    </th>
+
+                                    <th>
+                                        Confidence
+                                    </th>
+
+                                    <th>
+                                        Date
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                @foreach (var article in Model.RecentArticles)
+                                {
+
+                                    <tr>
+
+                                        <td class="px-4">
+
+                                            <div class="fw-semibold">
+
+                                                @(article.Headline.Length > 45
+                                                    ? article.Headline.Substring(0, 45) + "..."
+                                                    : article.Headline)
+
+                                            </div>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            @if (article.Prediction == "REAL")
+                                            {
+
+                                                <span class="badge bg-success">
+
+                                                    🟢 REAL
+
+                                                </span>
+
+                                            }
+                                            else
+                                            {
+
+                                                <span class="badge bg-danger">
+
+                                                    🔴 FAKE
+
+                                                </span>
+
+                                            }
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <div class="fw-semibold">
+
+                                                @((article.Confidence ?? 0).ToString("0.0"))%
+
+                                            </div>
+
+                                        </td>
+
+
+                                        <td class="text-muted">
+
+                                            @article.CreatedAt
+                                                .ToLocalTime()
+                                                .ToString("dd MMM yyyy")
+
+                                        </td>
+
+                                    </tr>
+
+                                }
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                }
+                else
+                {
+
+                    <div class="text-center py-5 px-4 empty-state">
+
+                        <div class="fs-1 mb-3">
+                            📰
+                        </div>
+
+                        <h5 class="fw-bold">
+                            No analyses yet
+                        </h5>
+
+                        <p class="text-muted">
+                            Analyze your first news article to see your statistics here.
+                        </p>
+
+                        <a asp-controller="News"
+                           asp-action="Check"
+                           class="btn btn-primary">
+
+                            Analyze Your First News
+
+                        </a>
+
+                    </div>
+
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         QUICK SUMMARY
+         ===================================== -->
+
+    <div class="col-lg-4">
+
+        <div class="card border-0 shadow-sm h-100 summary-card">
+
+            <div class="card-body p-4">
+
+                <h4 class="fw-bold mb-4">
+                    📈 Analysis Summary
+                </h4>
+
+
+                <!-- REAL -->
+
+                <div class="mb-4">
+
+                    <div class="d-flex justify-content-between mb-2">
+
+                        <span class="fw-semibold">
+                            REAL News
+                        </span>
+
+                        <span class="text-success fw-semibold">
+                            @Model.RealArticles
+                        </span>
+
+                    </div>
+
+
+                    @{
+                        var realPercentage =
+                            Model.TotalArticles > 0
+                                ? (Model.RealArticles * 100.0 /
+                                   Model.TotalArticles)
+                                : 0;
+                    }
+
+
+                    <div class="progress summary-progress">
+
+                        <div class="progress-bar bg-success"
+                             role="progressbar"
+                             style="width: @realPercentage.ToString("0.##")%"
+                             aria-valuenow="@realPercentage.ToString("0.##")"
+                             aria-valuemin="0"
+                             aria-valuemax="100">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FAKE -->
+
+                <div class="mb-4">
+
+                    <div class="d-flex justify-content-between mb-2">
+
+                        <span class="fw-semibold">
+                            FAKE News
+                        </span>
+
+                        <span class="text-danger fw-semibold">
+                            @Model.FakeArticles
+                        </span>
+
+                    </div>
+
+
+                    @{
+                        var fakePercentage =
+                            Model.TotalArticles > 0
+                                ? (Model.FakeArticles * 100.0 /
+                                   Model.TotalArticles)
+                                : 0;
+                    }
+
+
+                    <div class="progress summary-progress">
+
+                        <div class="progress-bar bg-danger"
+                             role="progressbar"
+                             style="width: @fakePercentage.ToString("0.##")%"
+                             aria-valuenow="@fakePercentage.ToString("0.##")"
+                             aria-valuemin="0"
+                             aria-valuemax="100">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <hr />
+
+
+                <!-- TIP -->
+
+                <div class="alert alert-info border-0 mt-4">
+
+                    <strong>
+                        💡 Tip
+                    </strong>
+
+                    <p class="mb-0 mt-1 small">
+
+                        AI predictions are indicators and should be verified
+                        using reliable sources before making important decisions.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</div>
